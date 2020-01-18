@@ -1,0 +1,74 @@
+
+
+.sign-up-form-container{
+    width:40vw;
+    background-color: white;
+    margin-left: auto;
+    border-top-left-radius: 15px;
+    padding: 3px 15px;
+    opacity:1;
+}
+@media screen and (max-width:768px){
+  .sign-up-form-container{
+    width:100vw;
+    background-color: white;
+    margin-left: auto;
+    border-top-left-radius: 0px;
+    padding: 3px 15px;
+    opacity:1;
+}}
+.header-signUp{
+    text-align: center;
+    margin-bottom: 28px;
+    /* border: solid red 1px; */
+}
+.navbar-light {
+  background-color: #ffffff;
+  box-shadow: 0px 14px 80px rgba(34, 35, 58, 0.2);
+}
+
+.auth-wrapper {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  text-align: left;
+}
+
+.auth-inner {
+  width: 450px;
+  margin: auto;
+  background: #ffffff;
+  box-shadow: 0px 14px 80px rgba(34, 35, 58, 0.2);
+  padding: 40px 55px 45px 55px;
+  border-radius: 15px;
+  transition: all .3s;
+}
+
+.auth-wrapper .form-control:focus {
+  border-color: #167bff;
+  box-shadow: none;
+}
+
+.auth-wrapper h3 {
+  text-align: center;
+  margin: 0;
+  line-height: 1;
+  padding-bottom: 20px;
+}
+
+.custom-control-label {
+  font-weight: 400;
+}
+
+
+
+.home-button-container-signup{
+  width: 100%;
+  margin-top: 30px;
+}
+.home-button-signup{
+  width: 70px;
+  margin: 0 auto;
+  height: 40px;
+  border-radius: 9px;
+}
