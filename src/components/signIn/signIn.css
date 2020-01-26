@@ -167,3 +167,7 @@ body, html, .App, #root, .auth-wrapper {
 .loginBtn--google:focus {
   background: #E74B37;
 }
+
+.error-signin{
+  color: red;
+}

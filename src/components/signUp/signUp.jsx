@@ -1,125 +1,244 @@
 import React, { Component } from "react";
+import Axios from "axios";
+import { connect } from "react-redux";
+import Select from "react-select";
+import {withRouter} from "react-router-dom";
+
+import { setCurrentUser } from "../../redux/actions";
+import {baseURL, proxyurl} from "../../constants";
+
 import "./signUp.css";
-import firebase from "../../utils/firebase";
-import {Link, withRouter} from "react-router-dom";
-
-import {store }from "react-notifications-component";
-import "animate.css";
-import 'react-notifications-component/dist/theme.css';
 
 
- class SignUp extends Component {
-    constructor(props){
-        super(props);
+const options = [
+  { value: "technology", label: "Technology" },
+  { value: "arts", label: "Arts" },
+  { value: "EDM", label: "EDM" },
+  { value: "health sciences", label: "Health Sciences" },
+  { value: "pharmacy", label: "Pharmacy" },
+  { value: "education", label: "Education" },
+  { value: "science", label: "Science" },
+  { value: "law", label: "Law" },
+  { value: "social sciences", label: "Social Sciences" }
+];
+class SignUp extends Component {
+  constructor(props) {
+    super(props);
 
-        this.state={
-            firstName:"",
-            lastName:"",
-            email:"",
-            password:""
-        }
-    }
-     handleChange=(event)=>{
-        const {name,value} = event.target;
-        this.setState({
-            [name]: value
-        })
-        }
+    this.state = {
+      publicId: "",
+      firstName: "",
+      lastName: "",
+      email: "",
+      faculty: "",
+      department: "",
+      level: "",
+      password: "",
+      selectedOption: ""
+    };
+  }
 
-     handleSubmit= async (event)=>{
-         event.preventDefault();
-         const {email, password} = this.state;
-         var tag = "no error"
+  handleChange = event => {
+    const { name, value } = event.target;
+    this.setState({
+      [name]: value
+    });
+  };
 
-        
-        await firebase.auth().createUserWithEmailAndPassword(email, password)
-            .catch(async function(error) {
-                // Handle Errors here.
-                var errorCode = error.code;
-                var errorMessage = error.message;
-                console.log(errorCode,errorMessage);
+  handleRadioChange = event => {
+    this.setState({
+      selectedOption: event.target.value
+    });
+  };
 
-                await store.addNotification({
-                    title: '',
-                    width: 250,
-                    message: errorMessage,
-                    type: 'warning',                         // 'default', 'success', 'info', 'warning'
-                    container: 'top-left',                // where to position the notifications
-                    animationIn: ["animated", "fadeIn"],     // animate.css classes that's applied
-                    animationOut: ["animated", "fadeOut"],   // animate.css classes that's applied
-                    dismiss: {
-                      duration: 3000 
-                    }
-                  })
-                tag = "error";
-              });
-                      
-         if(tag ==="no error"){
-            this.setState({
-                firstName:"",
-                lastName:"",
-                email:"",
-                password:"" 
-              })
+  handleFaculty = faculty => {
+    this.setState({
+      faculty: faculty
+    });
+  };
 
-              await store.addNotification({
-                title: '',
-                width: 250,
-                message: "Sign up successful",
-                type: 'success',                         // 'default', 'success', 'info', 'warning'
-                container: 'top-left',                // where to position the notifications
-                animationIn: ["animated", "fadeIn"],     // animate.css classes that's applied
-                animationOut: ["animated", "fadeOut"],   // animate.css classes that's applied
-                dismiss: {
-                  duration: 3000 
-                }
-              })
+  handleSubmit = async event => {
+    event.preventDefault();
+    const {
+      email,
+      password,
+      selectedOption,
+      publicId,
+      firstName,
+      lastName,
+      faculty,
+      department,
+      level
+    } = this.state;
 
-              this.props.history.push("/login");
-        }
-        
-       
-     }   
-    
-    render() {
-        return (
-            <form className="sign-up-form-container">
-                <h3 className="header-signUp">Sign Up</h3>
+    await Axios.post(`${proxyurl + baseURL}/${selectedOption}/`, {
+      student_id: publicId,
+      first_name: firstName,
+      last_name: lastName,
+      email_address: email,
+      faculty: faculty.value,
+      department: department,
+      level: level,
+      password: password
+    })
+      .then(async () => {
+        await Axios.post(`${proxyurl + baseURL}/auth/${selectedOption}/login`, {
+          email_address: email,
+          password: password
+        });
+      })
+      .then(async response => {
+        const publicId = response.data.public_id;
 
-                <div className="form-group">
-                    <label>First name</label>
-                    <input name="firstName" value={this.state.firstName} type="text" onChange={ this.handleChange} className="form-control" placeholder="First name" />
-                </div>
+        // get the current User's profile
+        await Axios.get(
+          `${proxyurl + baseURL}/${selectedOption}/${publicId}`
+        ).then(user => {
+          // set the current user state as the registered person
+          this.props.setCurrentUser({
+            ...user.data,
+            mode: selectedOption
+          });
 
-                <div className="form-group">
-                    <label>Last name</label>
-                    <input name="lastName" value={this.state.lastName}  type="text" onChange={ this.handleChange} className="form-control" placeholder="Last name" />
-                </div>
+          // Clear state
+          this.setState({
+            publicId: "",
+            firstName: "",
+            lastName: "",
+            email: "",
+            faculty: "",
+            department: "",
+            level: "",
+            password: "",
+            selectedOption: ""
+          });
 
-                <div className="form-group">
-                    <label>Email address</label>
-                    <input name="email" value={this.state.email}  type="email" onChange={ this.handleChange} className="form-control" placeholder="Enter email" />
-                </div>
+          // Go to user dashboard
+            this.props.history.push("./studentpage");
+        });
+      });
+  };
 
-                <div className="form-group">
-                    <label>Password</label>
-                    <input name="password" value={this.state.password} type="password"  onChange={ this.handleChange}className="form-control" placeholder="Enter password" />
-                </div>
-
-                <button type="submit" onClick={this.handleSubmit} className="btn btn-primary btn-block">Create Account</button>
-                <p className="forgot-password text-right">
-                    Already registered <Link to="/login">sign in?</Link>
-                </p>
-                
-                <p className="home-button-container-signup">
-          <Link to="/">
-          <button
-          className="btn btn-success home-button-signup btn-block"
-          >
-         Home
-        </button></Link></p>
-            </form>
-        );
-    }
+  render() {
+    return (
+      <form className="form-container-signUp">
+        <h3 className="header-signIn">SignUp</h3>
+        <div className="form-group">
+          <label>First Name</label>
+          <input
+            type="name"
+            className="form-control"
+            placeholder="Enter First Name"
+            name="firstName"
+            onChange={this.handleChange}
+            value={this.state.firstName}
+          />
+        </div>
+        <div className="form-group">
+          <label>Last Name</label>
+          <input
+            type="name"
+            className="form-control"
+            placeholder="Enter Last Name"
+            name="lastName"
+            onChange={this.handleChange}
+            value={this.state.lastName}
+          />
+        </div>
+        <label>Faculty</label>
+        <Select
+          value={this.state.faculty}
+          onChange={this.handleFaculty}
+          options={options}
+          placeholder="Select Faculty"
+        />
+        <br />
+        <div className="form-group">
+          <label>Department</label>
+          <input
+            type="name"
+            className="form-control"
+            placeholder="Enter Department"
+            name="department"
+            onChange={this.handleChange}
+            value={this.state.department}
+          />
+        </div>
+        <div className="form-group">
+          <label>Level</label>
+          <input
+            type="name"
+            className="form-control"
+            placeholder="Eg. 400"
+            name="level"
+            onChange={this.handleChange}
+            value={this.state.level}
+          />
+        </div>
+        <div className="form-group">
+          <label>Email address</label>
+          <input
+            type="email"
+            className="form-control"
+            placeholder="Enter email"
+            name="email"
+            onChange={this.handleChange}
+            value={this.state.email}
+          />
+        </div>
+        <div className="form-group">
+          <label>Password</label>
+          <input
+            type="password"
+            className="form-control"
+            placeholder="Enter password"
+            name="password"
+            onChange={this.handleChange}
+            value={this.state.password}
+          />
+        </div>
+        <input
+          type="radio"
+          name="human"
+          value="student"
+          onChange={this.handleRadioChange}
+        />{" "}
+        Student
+        <br />
+        <input
+          type="radio"
+          name="human"
+          value="lecturer"
+          onChange={this.handleRadioChange}
+        />{" "}
+        Lecturer <br />
+        <div className="form-group">
+          <label>
+            {this.state.selectedOption === "student" ? "Matric number" : "ID"}
+          </label>
+          <input
+            type="name"
+            className="form-control"
+            name="publicId"
+            onChange={this.handleChange}
+            value={this.state.publicId}
+          />
+        </div>
+        <button
+          type="submit"
+          onClick={this.handleSubmit}
+          className="btn btn-primary btn-block signin-submit-button"
+        >
+          Submit
+        </button>
+      </form>
+    );
+  }
 }
-export default withRouter(SignUp);
+
+const mapDispatchToProps = dispatch => ({
+  setCurrentUser: user => dispatch(setCurrentUser(user))
+});
+
+
+export default connect(null, mapDispatchToProps)(withRouter(SignUp));

@@ -1,0 +1,39 @@
+.course-view-container {
+  width: 60vw;
+  border: solid red 1px;
+  margin: 10px auto;
+}
+.course-view-main-content-container {
+  height: 350px;
+  display: flex;
+  flex-direction: row;
+  border: solid red 1px;
+}
+.course-view-main-content {
+  border: solid red 1px;
+  flex-grow: 1;
+}
+
+.course-view-main-content-heading {
+  height: 40px;
+  border: solid teal 1px;
+}
+.course-view-button-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.course-view-courses-button {
+  background-color: teal;
+  border-radius: 15px;
+  width: 80px;
+  color: white;
+}
+.course-view-courses-button-link {
+  text-decoration: none;
+  color: white;
+}
+.course-view-courses-button-link:hover {
+  text-decoration: none;
+  color: white;
+}

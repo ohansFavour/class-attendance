@@ -1,0 +1,14 @@
+.unregistered-courses-container{
+    width: 60%;
+    margin: 30px auto;
+}
+.each-course-unregistered{
+  display: flex;
+  flex-direction: row;
+}
+.each-course-name-unregistered{
+    flex-grow: 1;
+}
+.each-course-button-unregistered{
+    width: 70px;
+}

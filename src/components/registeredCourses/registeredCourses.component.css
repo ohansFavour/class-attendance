@@ -1,0 +1,16 @@
+.registered-courses-container{
+    width: 70%;
+    margin: 10px auto;
+}
+.each-course{
+  display: flex;
+  flex-direction: row;
+}
+.each-course-name{
+    flex-grow: 1;
+}
+.each-course-button{
+    width: 85px;
+    margin-left: 6px;
+}
+

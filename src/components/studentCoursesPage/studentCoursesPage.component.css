@@ -1,0 +1,10 @@
+.student-courses-page-container{
+    width: 60%;
+    margin: 10px auto;
+    border: solid red 1px;
+    height:500px;
+}
+.student-courses-page-category-selector-container{
+    width: 50%;
+    margin: 0 auto;
+}

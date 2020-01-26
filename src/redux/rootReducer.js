@@ -1,7 +1,12 @@
 import {combineReducers} from "redux";
-import user from "./userReducer";
 import {persistReducer} from "redux-persist";
 import storage from 'redux-persist/lib/storage';
+
+
+import user from "./userReducer";
+import unregisteredCourses from "./unregisteredCoursesReducer";
+import registeredCourses from "./registeredCoursesReducer"
+
 
 const persistConfig = {
     key: 'root',
@@ -9,6 +14,9 @@ const persistConfig = {
   }
 
 const rootReducer= combineReducers({
-user
+user,
+registeredCourses,
+unregisteredCourses
+
 });
 export default persistReducer(persistConfig,rootReducer);

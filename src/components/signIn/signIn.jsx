@@ -1,10 +1,15 @@
 import React, { Component } from "react";
 import Axios from "axios";
-import {connect} from "react-redux";
+import { connect } from "react-redux";
+import { withRouter,Link } from "react-router-dom";
 
-import {setCurrentUser} from "../../redux/actions";
+import { setCurrentUser } from "../../redux/actions";
 
 import "./signIn.css";
+
+const proxyurl = "https://cors-anywhere.herokuapp.com/";
+const baseURL =
+  "http://testenv-barebone-flask-rest-api.vpyckwffts.eu-central-1.elasticbeanstalk.com";
 
 class Signin extends Component {
   constructor(props) {
@@ -17,50 +22,55 @@ class Signin extends Component {
       publicId: ""
     };
   }
-  baseURL = ()=>"http://testenv-barebone-flask-rest-api.vpyckwffts.eu-central-1.elasticbeanstalk.com";
+
   handleChange = event => {
     const { name, value } = event.target;
     this.setState({
       [name]: value
     });
   };
+
   handleRadioChange = event => {
     this.setState({
       selectedOption: event.target.value
     });
   };
+
   handleSubmit = async event => {
     event.preventDefault();
-    const { email, password, selectedOption, publicId } = this.state;
+    const { email, password, selectedOption } = this.state;
 
-    await Axios.post(
-      `${this.baseURL()}/auth/${selectedOption}/login`,
-      {
-        email: email,
-        password: password
-      }
-    ).then(async () => {
-      if (selectedOption === "student") {
+    // sign user in
+    await Axios.post(`${proxyurl + baseURL}/auth/${selectedOption}/login`, {
+      email_address: email,
+      password: password
+    })
+    .then(async response => {
+      const publicId = response.data.public_id;
 
-        // get the current Student's profile
-            
-        await Axios.get(`${this.baseURL()}/${selectedOption}/${publicId}`).then((user)=>{
-         
+      // get the current User's profile
+      await Axios.get(
+        `${proxyurl + baseURL}/${selectedOption}/${publicId}`
+      ).then(user => {
         // set the current user state
-        
         this.props.setCurrentUser({
-          ...user,
+          ...user.data,
           mode: selectedOption
         });
 
-        // Go to user dashboard
-
-        }).catch(error=>{
-          // error getting the user
+        // clear state
+        this.setState({
+          email: "",
+          password: "",
+          selectedOption: "",
+          publicId: ""
         });
 
-      }
-     
+        // Go to user dashboard
+        this.props.history.push("/studentpage");
+      }).catch(error=>{
+        console.log(error.message);
+      });
     });
   };
 
@@ -68,6 +78,7 @@ class Signin extends Component {
     return (
       <form className="form-container">
         <h3 className="header-signIn">Login</h3>
+        <h4 className="error-signin">{this.state.error}</h4>
         <div className="form-group">
           <label>Email address</label>
           <input
@@ -92,7 +103,7 @@ class Signin extends Component {
         </div>
         <input
           type="radio"
-          name="gender"
+          name="human"
           value="student"
           onChange={this.handleRadioChange}
         />{" "}
@@ -100,7 +111,7 @@ class Signin extends Component {
         <br />
         <input
           type="radio"
-          name="gender"
+          name="human"
           value="lecturer"
           onChange={this.handleRadioChange}
         />{" "}
@@ -124,14 +135,20 @@ class Signin extends Component {
         >
           Submit
         </button>
+        <p className="forgot-password text-right">
+          New user?
+          <Link to="/signup">
+            <a href="#" id="forgot-password-link">
+              Sign up
+            </a>
+          </Link>
+        </p>
       </form>
     );
   }
 }
 
-const mapDispatchToProps = dispatch=>({
-
+const mapDispatchToProps = dispatch => ({
   setCurrentUser: user => dispatch(setCurrentUser(user))
-
 });
-export default connect(null, mapDispatchToProps)(Signin);
+export default connect(null, mapDispatchToProps)(withRouter(Signin));
