@@ -3,6 +3,8 @@ import { Link, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { selectCurrentUser } from "../../redux/selectors";
 
+import Avatar from "../../accessories/avatar.png";
+
 import "./studentProfile.component.css";
 
 const StudentProfile = props => {
@@ -18,7 +20,7 @@ const StudentProfile = props => {
   console.log(public_id);
   return (
     <div className="student-profile-container">
-      <h1>WELCOME, {first_name}</h1>
+      <h3 className="student-profile-header">Student Profile</h3>
       <div className="student-profile-main-content-container">
         <div className="student-profile-main-content">
           <p className="student-profile-main-content-heading"> {`Name: ${last_name.toUpperCase()} ${first_name} `} </p>
@@ -33,7 +35,9 @@ const StudentProfile = props => {
           </p>
           <p className="student-profile-main-content-heading"> {`Email: ${email_address}`} </p>
         </div>
-        <div className="student-profile-picture"></div>
+        <div className="student-profile-picture">
+          <img src={Avatar} width="100%" height="100%"/>
+        </div>
       </div>
 
       <div className="student-page-button-container">

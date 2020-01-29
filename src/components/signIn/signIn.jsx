@@ -57,17 +57,21 @@ class Signin extends Component {
           ...user.data,
           mode: selectedOption
         });
-
-        // clear state
-        this.setState({
-          email: "",
-          password: "",
-          selectedOption: "",
-          publicId: ""
-        });
+          
 
         // Go to user dashboard
-        this.props.history.push("/studentpage");
+        
+        this.props.history.push(`/${selectedOption}page`);
+
+        // clear state
+        // this.setState({
+        //   email: "",
+        //   password: "",
+        //   selectedOption: "",
+        //   publicId: ""
+        // });
+
+        
       }).catch(error=>{
         console.log(error.message);
       });

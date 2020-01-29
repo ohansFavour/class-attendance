@@ -1,36 +1,38 @@
 .student-profile-container {
   width: 60vw;
-  border: solid red 1px;
   margin: 10px auto;
 }
+.student-profile-header{
+  font-size: 40px;
+  margin-bottom: 15px;
+}
+
 .student-profile-main-content-container {
-  height: 350px;
+  height: 250px;
   display: flex;
   flex-direction: row;
-  border: solid red 1px;
 }
 .student-profile-main-content {
-  border: solid red 1px;
   flex-grow: 1;
 }
 .student-profile-picture {
-  border: solid red 1px;
   width: 120px;
   height: 150px;
   margin: auto 0;
 }
+
 .student-profile-main-content-heading{
     height: 40px;
-    border: solid teal 1px;
 }
 .student-page-button-container{
     width: 100%;
     display: flex;
     justify-content: center;
+    margin-top: 30px;
 }
 .student-page-courses-button{
-    background-color: teal;
-    border-radius: 15px;
+    background-color: #167bff;
+    border-radius: 10px;
 }
 .student-page-courses-button-link{
   text-decoration: none;

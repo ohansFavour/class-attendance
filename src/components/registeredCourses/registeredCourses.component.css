@@ -2,15 +2,23 @@
     width: 70%;
     margin: 10px auto;
 }
-.each-course{
-  display: flex;
-  flex-direction: row;
-}
-.each-course-name{
-    flex-grow: 1;
-}
-.each-course-button{
-    width: 85px;
-    margin-left: 6px;
-}
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #dddddd;
+  }
+  .no-registered-course{
+      color: red;
+      font-style: italic;
+  }
 

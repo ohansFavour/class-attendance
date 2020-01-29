@@ -8,7 +8,6 @@ import {withSpinner} from "../with-spinner/with-spinner.component";
 
 const EnhancedStudentContainer = withSpinner(StudentProfile);
 const StudentProfileContainer=(props)=>{
-    console.log("here");
     return(
     <div>
         <EnhancedStudentContainer isLoading={!props.currentUser} {...props}/>

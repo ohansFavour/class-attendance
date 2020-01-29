@@ -2,13 +2,12 @@ import React, { Component } from "react";
 import Axios from "axios";
 import { connect } from "react-redux";
 import Select from "react-select";
-import {withRouter} from "react-router-dom";
+import { withRouter } from "react-router-dom";
 
 import { setCurrentUser } from "../../redux/actions";
-import {baseURL, proxyurl} from "../../constants";
+import { baseURL, proxyurl } from "../../constants";
 
 import "./signUp.css";
-
 
 const options = [
   { value: "technology", label: "Technology" },
@@ -80,43 +79,10 @@ class SignUp extends Component {
       department: department,
       level: level,
       password: password
-    })
-      .then(async () => {
-        await Axios.post(`${proxyurl + baseURL}/auth/${selectedOption}/login`, {
-          email_address: email,
-          password: password
-        });
-      })
-      .then(async response => {
-        const publicId = response.data.public_id;
+    });
 
-        // get the current User's profile
-        await Axios.get(
-          `${proxyurl + baseURL}/${selectedOption}/${publicId}`
-        ).then(user => {
-          // set the current user state as the registered person
-          this.props.setCurrentUser({
-            ...user.data,
-            mode: selectedOption
-          });
-
-          // Clear state
-          this.setState({
-            publicId: "",
-            firstName: "",
-            lastName: "",
-            email: "",
-            faculty: "",
-            department: "",
-            level: "",
-            password: "",
-            selectedOption: ""
-          });
-
-          // Go to user dashboard
-            this.props.history.push("./studentpage");
-        });
-      });
+    // Go to user login
+    this.props.history.push("./");
   };
 
   render() {
@@ -239,6 +205,5 @@ class SignUp extends Component {
 const mapDispatchToProps = dispatch => ({
   setCurrentUser: user => dispatch(setCurrentUser(user))
 });
-
 
 export default connect(null, mapDispatchToProps)(withRouter(SignUp));

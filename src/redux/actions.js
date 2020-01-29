@@ -56,11 +56,16 @@ export const setCourseView = course=>({
     payload: course
 })
 
+export const logoutAction=()=>({
+  type: LOGOUT
+})
+
 export const logout = (mode)=>{
-   Axios.post(`${proxyurl +baseURL}/auth/${mode}/logout`)
-   return{
-     type: LOGOUT
+   return async dispatch=>{
+    await Axios.post(`${proxyurl +baseURL}/auth/${mode}/logout`);
+    dispatch(logoutAction());
    }
+   
 }
 
 export const getCourses = (currentUser, isRegistered) => {

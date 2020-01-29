@@ -9,8 +9,8 @@ export const selectCurrentUser = createSelector(
     (user)=>  user.currentUser
 )
 export const selectCurrentUserMode = createSelector(
-    [selectUser],
-    (user)=>  user.currentUser.mode
+    [selectCurrentUser],
+    (currentUser)=>  currentUser.mode
 )
 
 export const selectCourse= createSelector(

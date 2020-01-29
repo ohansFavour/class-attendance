@@ -16,7 +16,7 @@ class RegisteredCourses extends React.Component {
   }
 
   handleUnregister = async courseID => {
-    console.log(courseID, this.props.id);
+    console.log(courseID, this.props.id, this.props.mode);
 
     await Axios.delete(
       `${proxyurl + baseURL}/course/${this.props.mode}/${this.props.id}`,
@@ -29,29 +29,43 @@ class RegisteredCourses extends React.Component {
     });
   };
 
-  handleView= (course)=>{
-    console.log(course)
-      this.props.setCourseView(course);
-      this.props.history.push(`${this.props.match.path}/${course.public_id}`);
-  }
+  handleView = course => {
+    this.props.setCourseView(course);
+    this.props.history.push(`${this.props.match.path}/${course.public_id}`);
+  };
 
   render() {
     const { list, match } = this.props;
     return (
       <div className="registered-courses-container">
-        {list.map(course => (
-          <div className="each-course" key={course.public_id}>
-            <div className="each-course-name"> {course.course_title}</div>
-            <div className="each-course-name"> {course.course_code}</div>
-            <button className="each-course-button" onClick={()=>this.handleView(course)}>View</button>
-            <button
-              className="each-course-button"
-              onClick={() => this.handleUnregister(course.public_id)}
-            >
-              Unregister
-            </button>
-          </div>
-        ))}
+       {Array.isArray(list) && list.length ? (<table>
+          <tr className="table-row-header">
+            <th className="table-content-header">Course Title</th>
+            <th className="table-content-header">Course Code</th>
+            <th></th>
+            <th></th>
+          </tr>
+          {list.map(course => (
+            <tr  key={course.public_id} className="table-row">
+              <td className="table-content-title"> {course.course_title}</td>
+              <td className="table-content"> {course.course_code}</td>
+              <td className="table-content">
+                <button
+                  onClick={() => this.handleView(course)}
+                >
+                  View
+                </button>
+              </td>
+              <td className="table-content">
+                <button
+                  onClick={() => this.handleUnregister(course.public_id)}
+                >
+                  Unregister
+                </button>
+              </td>
+            </tr>
+          ))}
+        </table>) : <span className="no-registered-course">No Registered course!</span>} 
       </div>
     );
   }
@@ -67,7 +81,7 @@ const mapDispatchToProps = dispatch => ({
     dispatch(getCourses(currentUser, (isRegistered = true))),
   getUnregisteredCourses: (currentUser, isRegistered) =>
     dispatch(getCourses(currentUser, (isRegistered = false))),
-    setCourseView: (course)=> dispatch(setCourseView(course))
+  setCourseView: course => dispatch(setCourseView(course))
 });
 
 export default connect(
