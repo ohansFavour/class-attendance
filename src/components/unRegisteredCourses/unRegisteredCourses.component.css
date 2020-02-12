@@ -2,13 +2,22 @@
     width: 60%;
     margin: 30px auto;
 }
-.each-course-unregistered{
-  display: flex;
-  flex-direction: row;
-}
-.each-course-name-unregistered{
-    flex-grow: 1;
-}
-.each-course-button-unregistered{
-    width: 70px;
-}
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #dddddd;
+  }
+  .no-registered-course{
+      color: red;
+      font-style: italic;
+  }

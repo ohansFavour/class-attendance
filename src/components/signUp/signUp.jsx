@@ -26,6 +26,7 @@ class SignUp extends Component {
 
     this.state = {
       publicId: "",
+      rfId:"",
       firstName: "",
       lastName: "",
       email: "",
@@ -63,15 +64,17 @@ class SignUp extends Component {
       password,
       selectedOption,
       publicId,
+      rfId,
       firstName,
       lastName,
       faculty,
       department,
       level
     } = this.state;
-
-    await Axios.post(`${proxyurl + baseURL}/${selectedOption}/`, {
+    // proxyurl + 
+    await Axios.post(`${proxyurl+baseURL}/${selectedOption}/`, {
       student_id: publicId,
+      rf_id: rfId,
       first_name: firstName,
       last_name: lastName,
       email_address: email,
@@ -179,6 +182,16 @@ class SignUp extends Component {
         />{" "}
         Lecturer <br />
         <div className="form-group">
+        <label>
+            RFID
+          </label>
+          <input
+            type="name"
+            className="form-control"
+            name="rfId"
+            onChange={this.handleChange}
+            value={this.state.rfId}
+          />
           <label>
             {this.state.selectedOption === "student" ? "Matric number" : "ID"}
           </label>

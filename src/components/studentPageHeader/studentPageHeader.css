@@ -4,12 +4,11 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  border: solid teal 1px;
   margin-bottom: 50px;
 }
 .student-page-header-logo {
-  width: 73.666px;
-  height: 52px;
+  width: 55px;
+  height: 57px;
 }
 .student-page-header-options{
     display: flex;

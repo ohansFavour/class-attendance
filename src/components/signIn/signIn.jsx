@@ -1,15 +1,13 @@
 import React, { Component } from "react";
 import Axios from "axios";
 import { connect } from "react-redux";
-import { withRouter,Link } from "react-router-dom";
+import { withRouter, Link } from "react-router-dom";
 
-import { setCurrentUser } from "../../redux/actions";
+import { setCurrentUser,login, getUserProfile } from "../../redux/actions";
+import { baseURL, proxyurl } from "../../constants";
 
 import "./signIn.css";
 
-const proxyurl = "https://cors-anywhere.herokuapp.com/";
-const baseURL =
-  "http://testenv-barebone-flask-rest-api.vpyckwffts.eu-central-1.elasticbeanstalk.com";
 
 class Signin extends Component {
   constructor(props) {
@@ -44,37 +42,25 @@ class Signin extends Component {
     await Axios.post(`${proxyurl + baseURL}/auth/${selectedOption}/login`, {
       email_address: email,
       password: password
-    })
-    .then(async response => {
+    }).then(async response => {
       const publicId = response.data.public_id;
 
       // get the current User's profile
-      await Axios.get(
-        `${proxyurl + baseURL}/${selectedOption}/${publicId}`
-      ).then(user => {
-        // set the current user state
-        this.props.setCurrentUser({
-          ...user.data,
-          mode: selectedOption
+      await Axios.get(`${proxyurl + baseURL}/${selectedOption}/${publicId}`)
+        .then(user => {
+          // set the current user state
+          this.props.setCurrentUser({
+            ...user.data,
+            mode: selectedOption
+          });
+
+          // Go to user dashboard
+
+          this.props.history.push(`/${selectedOption}page`);
+        })
+        .catch(error => {
+          console.log(error.message);
         });
-          
-
-        // Go to user dashboard
-        
-        this.props.history.push(`/${selectedOption}page`);
-
-        // clear state
-        // this.setState({
-        //   email: "",
-        //   password: "",
-        //   selectedOption: "",
-        //   publicId: ""
-        // });
-
-        
-      }).catch(error=>{
-        console.log(error.message);
-      });
     });
   };
 

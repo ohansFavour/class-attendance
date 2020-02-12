@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 
-import { Link, withRouter , Redirect} from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 
 import { logout } from "../../redux/actions";
 import { selectCurrentUserMode } from "../../redux/selectors";

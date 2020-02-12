@@ -12,9 +12,8 @@ import {
   LOGOUT
 } from "./types";
 
-const proxyurl = "https://cors-anywhere.herokuapp.com/";
-const baseURL =
-  "http://testenv-barebone-flask-rest-api.vpyckwffts.eu-central-1.elasticbeanstalk.com";
+import {proxyurl, baseURL} from "../constants";
+
 
 export const setCurrentUser = currentUser => {
   return {
@@ -68,6 +67,25 @@ export const logout = (mode)=>{
    
 }
 
+export const createCourse = async (createObject)=>{
+   const {faculty, course_title,course_code, department,strict} = createObject;
+   
+   await Axios.post(`${proxyurl+baseURL}/course/`,{
+     faculty: faculty.value,
+     department: department,
+     course_title: course_title,
+     course_code: course_code,
+     strict: strict
+   }).then(response=>{
+     let {public_id} = response.data
+
+     // Add course to lecturer
+
+     
+   })
+}
+
+
 export const getCourses = (currentUser, isRegistered) => {
   const { mode, public_id } = currentUser;
 
@@ -103,4 +121,6 @@ export const getCourses = (currentUser, isRegistered) => {
     };
   }
 };
+
+
 
