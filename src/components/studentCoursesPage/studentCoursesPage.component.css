@@ -1,5 +1,5 @@
 .student-courses-page-container{
-    width: 90%;
+    width: 100%;
     margin: 10px auto;
     height:500px;
 }
@@ -8,3 +8,11 @@
     margin: 0 auto;
     margin-bottom: 50px;
 }
+@media only screen and (max-width: 500px){
+    .student-courses-page-category-selector-container{
+        width: 70%;
+        margin: 0 auto;
+        margin-bottom: 50px;
+    }
+    
+  }

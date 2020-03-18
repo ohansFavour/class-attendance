@@ -3,17 +3,17 @@ import { connect } from "react-redux";
 
 import { Link, withRouter } from "react-router-dom";
 
-import { logout } from "../../redux/actions";
-import { selectCurrentUserMode } from "../../redux/selectors";
+import { logoutAction } from "../../redux/actions";
+import { selectUserType } from "../../redux/selectors";
 
-import Logo from "../../accessories/oaulogo.jpg";
+import Logo from "../../accessories/oau.png";
 
 import "./studentPageHeader.css";
 
 class StudentPageHeader extends React.Component {
 
   handleLogout = async () => {
-     await this.props.logout(this.props.mode);
+     await this.props.logout();
      this.props.history.push("/");
   };
   render() {
@@ -35,6 +35,12 @@ class StudentPageHeader extends React.Component {
           >
             Courses
           </Link>
+          <Link
+            to={`${this.props.match.path}/attendance`}
+            className="student-page-header-option"
+          >
+            Attendance
+          </Link>
           <div
             
             onClick={this.handleLogout}
@@ -49,10 +55,10 @@ class StudentPageHeader extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  mode: selectCurrentUserMode(state)
+  mode: selectUserType(state)
 });
 const mapDispatchToProps = dispatch => ({
-  logout: mode => dispatch(logout(mode))
+  logout: () => dispatch(logoutAction())
 });
 export default connect(
   mapStateToProps,

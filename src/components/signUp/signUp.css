@@ -1,12 +1,31 @@
-.form-container-signUp {
-  width: 350px;
+.sign-up-page-container{
+  width: 98.7vw;
+  background-color: #f2f2f2;
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.spinner{
+  position: absolute;
+  top: 50vh;
+}
+.form-container-signUp{
+  min-width: 400px;
   background-color: white;
-  border-top-left-radius: 15px;
-  padding: 3px 15px;
-  margin: 0 auto;
+}
+.sign-up-page-fixed{
+  height: 50px;
+  
 }
 .signin-submit-button {
   margin-top: 15px;
+}
+.home-button-sign-up-container {
+  margin-top: 15px;
+  width:100%;
+  display: flex;
+  justify-content: center;
 }
 
 @media screen and (max-width: 768px) {

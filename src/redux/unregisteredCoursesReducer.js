@@ -2,8 +2,11 @@ import {
   ASYNC_UNREGISTERED_COURSES_START,
   ASYNC_UNREGISTERED_COURSES_SUCCESS,
   ASYNC_UNREGISTERED_COURSES_FAILURE,
-  LOGOUT
+  LOGOUT,
+  ADD_COURSE_ATTENDANCE
 } from "./types";
+
+import { addToParticularEntryNormalizedObject } from "../functions";
 
 const INITIAL_STATE = {
   courses: null,
@@ -16,26 +19,41 @@ const unregisteredCoursesReducer = (state = INITIAL_STATE, action) => {
     case ASYNC_UNREGISTERED_COURSES_START:
       return {
         ...state,
-        isFetching: true
+        isLoading: true,
+        errorMessage: undefined
       };
 
     case ASYNC_UNREGISTERED_COURSES_SUCCESS:
       return {
         ...state,
         courses: action.payload,
-        isLoading: false
+        isLoading: false,
+        errorMessage: undefined
       };
     case ASYNC_UNREGISTERED_COURSES_FAILURE:
       return {
         ...state,
         isLoading: false,
-        errorMessage: action.payload
+        errorMessage: action.payload,
+        courses: null
       };
     case LOGOUT:
       return {
         courses: null,
         isLoading: undefined,
         errorMessage: undefined
+      };
+
+    case ADD_COURSE_ATTENDANCE:
+      const newCourse = addToParticularEntryNormalizedObject(
+        state,
+        action.courseId,
+        action.payload,
+        "attendance"
+      );
+      return {
+        ...state,
+        ...newCourse
       };
 
     default:

@@ -1,10 +1,15 @@
 .student-profile-container {
   width: 60vw;
   margin: 10px auto;
+  /* background-color:  #e9ecef; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
-.student-profile-header{
+.student-profile-header {
   font-size: 40px;
-  margin-bottom: 15px;
+  margin-bottom: 25px;
+  /* font-weight: bold; */
 }
 
 .student-profile-main-content-container {
@@ -21,25 +26,33 @@
   margin: auto 0;
 }
 
-.student-profile-main-content-heading{
-    height: 40px;
+.student-profile-main-content-heading {
+  height: 40px;
 }
-.student-page-button-container{
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    margin-top: 30px;
+.student-page-button-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
 }
-.student-page-courses-button{
-    background-color: #167bff;
-    border-radius: 10px;
+.student-page-courses-button {
 }
-.student-page-courses-button-link{
+.student-page-courses-button-link {
   text-decoration: none;
   color: white;
 }
-.student-page-courses-button-link:hover{
+.student-page-courses-button-link:hover {
+  text-decoration: none;
+  color: white;
+}
 
-  text-decoration: none;
-  color: white;
+@media only screen and (max-width: 844px) {
+  .student-profile-picture {
+    display: none;
+  }
+}
+@media only screen and (max-width: 644px) {
+  .student-profile-container {
+    width: 80vw;
+  }
 }

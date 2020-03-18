@@ -1,57 +1,114 @@
-import {createSelector} from "reselect";
+import { createSelector } from "reselect";
 
-const selectUser = (state)=> state.user;
-const selectRegistered = (state)=> state.registeredCourses;
-const selectUnregistered = (state)=> state.unregisteredCourses;
+const selectUser = state => state.user;
+const selectRegistered = state => state.registeredCourses;
+const selectUnregistered = state => state.unregisteredCourses;
+const selectSignup = state => state.signup;
+const selectAttendanceReducer = state=> state.attendance;
 
 export const selectCurrentUser = createSelector(
-    [selectUser],
-    (user)=>  user.currentUser
-)
-export const selectCurrentUserMode = createSelector(
-    [selectCurrentUser],
-    (currentUser)=>  currentUser.mode
-)
+  [selectUser],
+  user => user.currentUser
+);
 
-export const selectCourse= createSelector(
-    [selectUser],
-    (user)=> user.courseView
-)
+export const selectUserCreated = createSelector(
+  [selectSignup],
+  signup => signup.userCreated
+);
+export const selectAttendanceObject =createSelector(
+  [selectAttendanceReducer],
+  attendance => attendance
+);
+export const selectAttendanceIsLoading =createSelector(
+  [selectAttendanceReducer],
+  attendance => attendance.isLoading
+);
+export const selectIsCreatingUser = createSelector(
+  [selectSignup],
+  signup => signup.isCreating
+);
+export const selectIsFetchingUser = createSelector(
+  [selectUser],
+  user => user.isFetching
+);
+export const selectDoneFetching = createSelector(
+  [selectUser],
+  user => user.doneFetching
+);
+export const selectUserType = createSelector(
+  [selectUser],
+  user => user.userType
+);
+export const selectCurrentUserMode = createSelector(
+  [selectCurrentUser],
+  currentUser => currentUser.mode
+);
+export const selectCurrentUserID = createSelector(
+  [selectCurrentUser],
+  currentUser => currentUser.public_id
+);
+
+export const selectCourse = createSelector(
+  [selectUser],
+  user => user.courseView
+);
 
 export const selectRegisteredCourses = createSelector(
-    [selectRegistered],
-    (registeredCourses)=> registeredCourses.courses
-)
+  [selectRegistered],
+  registeredCourses => registeredCourses.courses
+);
 
+export const selectRegisteredCoursesError = createSelector(
+  [selectRegistered],
+  registeredCourses => registeredCourses.errorMessage
+);
+export const selectIsLoadingAttendanceProfile = createSelector(
+  [selectRegistered],
+  registeredCourses => registeredCourses.isLoadingAttendance
+);
+export const selectIsLoadingcommits = createSelector(
+  [selectRegistered],
+  registeredCourses => registeredCourses.isLoadingCommits
+);
+
+export const selectAttendanceProfile = createSelector(
+  [selectRegistered],
+  registeredCourses => registeredCourses.attendanceProfile
+);
+export const selectAttendanceCommits = createSelector(
+  [selectRegistered],
+  registeredCourses => registeredCourses.attendanceCommits
+);
 export const selectUnregisteredCourses = createSelector(
-    [selectUnregistered],
-    (unregisteredCourses)=> unregisteredCourses.courses
-)
+  [selectUnregistered],
+  unregisteredCourses => unregisteredCourses.courses
+);
 
 export const selectIsLoadingRegisteredCourses = createSelector(
-    [selectRegistered],
-    (registeredCourses)=> registeredCourses.isLoading
-)
+  [selectRegistered],
+  registeredCourses => registeredCourses.isLoading
+);
 
 export const selectIsLoadingUnregisteredCourses = createSelector(
-    [selectUnregistered],
-    (unregisteredCourses)=> unregisteredCourses.isLoading
-)
+  [selectUnregistered],
+  unregisteredCourses => unregisteredCourses.isLoading
+);
 
+export const selectUnregisteredCoursesError = createSelector(
+  [selectUnregistered],
+  unregisteredCourses => unregisteredCourses.errorMessage
+);
 export const selectRegisteredCoursesBool = createSelector(
-    [selectRegistered],
-    (registeredCourses)=> !!registeredCourses.courses
-)
+  [selectRegistered],
+  registeredCourses => !!registeredCourses.courses
+);
 
 export const selectUnregisteredCoursesBool = createSelector(
-    [selectUnregistered],
-    (unregisteredCourses)=> !!unregisteredCourses.courses
-)
+  [selectUnregistered],
+  unregisteredCourses => !!unregisteredCourses.courses
+);
 
 export const selectIsLoadingCurrentUser = createSelector(
-    [selectUser],
-    (user)=> !!user.currentUser
-)
-
-
-
+  [selectUser],
+  user => !!user.currentUser
+);

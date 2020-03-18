@@ -2,30 +2,32 @@ import React from "react";
 import { Link, withRouter } from "react-router-dom";
 import Axios from "axios";
 import { connect } from "react-redux";
+import Table from "react-bootstrap/Table";
+import Button from "react-bootstrap/Button";
 
-import { selectCurrentUser } from "../../redux/selectors";
+import {
+  selectCurrentUser,
+  selectRegisteredCourses,
+  selectUserType
+} from "../../redux/selectors";
 import { getCourses, setCourseView } from "../../redux/actions";
 
 import "./registeredCourses.component.css";
 
-import { baseURL, proxyurl } from "../../constants";
+import { denormalizeObject } from "../../functions";
 
 class RegisteredCourses extends React.Component {
   constructor(props) {
     super(props);
   }
-
+  componentDidMount() {}
   handleUnregister = async courseID => {
-    console.log(courseID, this.props.id, this.props.mode);
-
-    await Axios.delete(
-      `${proxyurl + baseURL}/course/${this.props.mode}/${this.props.id}`,
-      {
-        public_id: courseID
-      }
-    ).then(() => {
-      this.props.getUnregisteredCourses(this.props.currentUser);
-      this.props.getRegisteredCourses(this.props.currentUser);
+    const { mode, currentUser } = this.props;
+    await Axios.delete(`/course/${this.props.mode}/${this.props.id}`, {
+      public_id: courseID
+    }).then(() => {
+      this.props.getUnregisteredCourses(mode, currentUser);
+      this.props.getRegisteredCourses(mode, currentUser);
     });
   };
 
@@ -35,34 +37,47 @@ class RegisteredCourses extends React.Component {
   };
 
   render() {
-    const { list } = this.props;
+    const { registeredCourses } = this.props;
     return (
       <div className="registered-courses-container">
-        {Array.isArray(list) && list.length ? (
-          <table>
-            <tr className="table-row-header">
-              <th className="table-content-header">Course Title</th>
-              <th className="table-content-header">Course Code</th>
-              <th></th>
-              <th></th>
-            </tr>
-            {list.map(course => (
-              <tr key={course.public_id} className="table-row">
-                <td className="table-content-title"> {course.course_title}</td>
-                <td className="table-content"> {course.course_code}</td>
-                <td className="table-content">
-                  <button onClick={() => this.handleView(course)}>View</button>
-                </td>
-                <td className="table-content">
-                  <button
-                    onClick={() => this.handleUnregister(course.public_id)}
-                  >
-                    Unregister
-                  </button>
-                </td>
+        {Array.isArray(registeredCourses) && registeredCourses.length ? (
+          <Table striped bordered hover>
+            <thead>
+              <tr>
+                <th>Course Title</th>
+                <th>Course Code</th>
+                <th></th>
+                <th></th>
               </tr>
-            ))}
-          </table>
+            </thead>
+            <tbody>
+              {registeredCourses.map(course => (
+                <tr key={course.public_id} className="table-row">
+                  <td className="table-content-title">
+                    {" "}
+                    {course.course_title}
+                  </td>
+                  <td className="table-content"> {course.course_code}</td>
+                  <td className="table-content">
+                    <Button
+                      variant="outline-primary"
+                      onClick={() => this.handleView(course)}
+                    >
+                      View
+                    </Button>
+                  </td>
+                  <td className="table-content">
+                    <Button
+                      variant="outline-primary"
+                      onClick={() => this.handleUnregister(course.public_id)}
+                    >
+                      Unregister
+                    </Button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </Table>
         ) : (
           <span className="no-registered-course">No Registered course!</span>
         )}
@@ -72,15 +87,17 @@ class RegisteredCourses extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  mode: selectCurrentUser(state).mode,
-  id: selectCurrentUser(state).public_id
+  mode: selectUserType(state),
+  currentUser: selectCurrentUser(state),
+  id: selectCurrentUser(state).public_id,
+  registeredCourses: denormalizeObject(selectRegisteredCourses(state))
 });
 
 const mapDispatchToProps = dispatch => ({
-  getRegisteredCourses: (currentUser, isRegistered) =>
-    dispatch(getCourses(currentUser, (isRegistered = true))),
-  getUnregisteredCourses: (currentUser, isRegistered) =>
-    dispatch(getCourses(currentUser, (isRegistered = false))),
+  getRegisteredCourses: (mode, currentUser, isRegistered) =>
+    dispatch(getCourses(mode, currentUser, (isRegistered = true))),
+  getUnregisteredCourses: (mode, currentUser, isRegistered) =>
+    dispatch(getCourses(mode, currentUser, (isRegistered = false))),
   setCourseView: course => dispatch(setCourseView(course))
 });
 

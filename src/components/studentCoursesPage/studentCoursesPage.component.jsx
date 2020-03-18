@@ -7,6 +7,7 @@ import RegisteredCourses from "../registeredCourses/registeredCourses.component"
 import UnregisteredCourses from "../unRegisteredCourses/unRegisteredCourses.component";
 import {
   selectCurrentUser,
+  selectUserType,
   selectRegisteredCourses,
   selectUnregisteredCourses,
   selectRegisteredCoursesBool,
@@ -36,8 +37,9 @@ class StudentCoursesPage extends Component {
   }
 
   componentDidMount = () => {
-    this.props.getRegisteredCourses(this.props.currentUser);
-    this.props.getUnregisteredCourses(this.props.currentUser);
+    const { getRegisteredCourses,getUnregisteredCourses, mode, currentUser } = this.props;
+    getRegisteredCourses(mode, currentUser, true);
+    getUnregisteredCourses(mode, currentUser, false);
   };
 
   handleCourseCategory = courseCategory => {
@@ -83,14 +85,15 @@ class StudentCoursesPage extends Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-  getRegisteredCourses: (currentUser, isRegistered) =>
-    dispatch(getCourses(currentUser, (isRegistered = true))),
-  getUnregisteredCourses: (currentUser, isRegistered) =>
-    dispatch(getCourses(currentUser, (isRegistered = false)))
+  getRegisteredCourses: (mode,currentUser, isRegistered) =>
+    dispatch(getCourses(mode,currentUser, (isRegistered = true))),
+  getUnregisteredCourses: (mode,currentUser, isRegistered) =>
+    dispatch(getCourses(mode,currentUser, (isRegistered = false)))
 });
 
 const mapStateToProps = state => ({
   currentUser: selectCurrentUser(state),
+  mode: selectUserType(state),
   registeredCourses: selectRegisteredCourses(state),
   unregisteredCourses: selectUnregisteredCourses(state),
   isLoadingRegisteredCourses: selectRegisteredCoursesBool(state),

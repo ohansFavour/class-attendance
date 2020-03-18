@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import Button from "react-bootstrap/Button";
 import { Link, withRouter } from "react-router-dom";
 
 import { selectCourse } from "../../redux/selectors";
@@ -7,41 +8,43 @@ import { selectCourse } from "../../redux/selectors";
 import "./coursepage.styles.css";
 
 class Course extends React.Component {
-
   handleBack = () => {
     this.props.history.goBack();
   };
-
+  handleAttendance=()=>{
+    this.props.history.push("/studentPage/attendance")
+  }
   render() {
     const { course } = this.props;
     return (
       <React.Fragment>
         <div className="course-view-container">
           <div className="course-view-main-content">
+            <h1 className="header-course">Course Profile</h1>
             <p className="course-view-main-content-heading">
-              {`Course Title: ${course.course_title}`}
+              <strong>Course Title:</strong>
+              {` ${course.course_title}`}
             </p>
             <p className="course-view-main-content-heading">
               {" "}
-              {`Course Code: ${course.course_code}`}{" "}
+              <strong>Course Code:</strong>
+              {` ${course.course_code}`}{" "}
             </p>
             <p className="course-view-main-content-heading">
               {" "}
-              {`Faculty: ${course.faculty}`}{" "}
+              <strong>Faculty:</strong>
+              {` ${course.faculty}`}{" "}
             </p>
             <p className="course-view-main-content-heading">
               {" "}
-              {`Department: ${course.department}`}{" "}
+              <strong>Department:</strong>
+              {` ${course.department}`}{" "}
             </p>
           </div>
           <div className="course-view-button-container">
-          <button onClick={this.handleBack} className="course-view-courses-button">
-              Attendance History
-          </button>
+            <Button className="course-view-courses-button" onClick={this.handleAttendance}>Attendance</Button>
+          </div>
         </div>
-        </div>
-
-        
       </React.Fragment>
     );
   }

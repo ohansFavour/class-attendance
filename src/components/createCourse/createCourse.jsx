@@ -1,7 +1,12 @@
 import React from "react";
+import { connect } from "react-redux";
 import Select from "react-select";
 
-import {createCourse} from "../../redux/actions";
+import { createAndAddCourse } from "../../redux/actions";
+import {
+  selectCurrentUser,
+  selectUserType
+} from "../../redux/selectors";
 
 const options = [
   { value: "technology", label: "Technology" },
@@ -45,7 +50,8 @@ class CreateCourse extends React.Component {
     }
     this.setState({
       strict: bool
-    });
+    },()=> console.log(this.state.strict));
+    
   };
 
   handleFaculty = faculty => {
@@ -56,8 +62,19 @@ class CreateCourse extends React.Component {
 
   handleSubmit = async event => {
     event.preventDefault();
-    let createObj = this.state;
-    await createCourse(createObj);
+    const { mode, currentUser } = this.props;
+    let public_id = currentUser.public_id;
+
+    //Create and Add Course
+    await this.props.createAndAddCourse(this.state, mode, public_id);
+
+    this.setState({
+      faculty: "",
+      course_code: "",
+      course_title: "",
+      department: "",
+      strict: undefined
+    });
   };
   render() {
     return (
@@ -131,4 +148,13 @@ class CreateCourse extends React.Component {
   }
 }
 
-export default CreateCourse;
+const mapStateToProps = state => ({
+  currentUser: selectCurrentUser(state),
+  mode: selectUserType(state)
+});
+
+const mapDispatchToProps = dispatch => ({
+  createAndAddCourse: (obj, mode, publicID) =>
+    dispatch(createAndAddCourse(obj, mode, publicID))
+});
+export default connect(mapStateToProps, mapDispatchToProps)(CreateCourse);

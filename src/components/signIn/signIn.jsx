@@ -3,11 +3,15 @@ import Axios from "axios";
 import { connect } from "react-redux";
 import { withRouter, Link } from "react-router-dom";
 
-import { setCurrentUser,login, getUserProfile } from "../../redux/actions";
+import { setCurrentUser } from "../../redux/actions";
 import { baseURL, proxyurl } from "../../constants";
-
+import {
+  selectIsFetchingUser,
+  selectUserType,
+  selectDoneFetching
+} from "../../redux/selectors";
+import { fetchUserAsync } from "../../redux/sign-in/signinActions";
 import "./signIn.css";
-
 
 class Signin extends Component {
   constructor(props) {
@@ -36,39 +40,24 @@ class Signin extends Component {
 
   handleSubmit = async event => {
     event.preventDefault();
+
     const { email, password, selectedOption } = this.state;
-
-    // sign user in
-    await Axios.post(`${proxyurl + baseURL}/auth/${selectedOption}/login`, {
-      email_address: email,
-      password: password
-    }).then(async response => {
-      const publicId = response.data.public_id;
-
-      // get the current User's profile
-      await Axios.get(`${proxyurl + baseURL}/${selectedOption}/${publicId}`)
-        .then(user => {
-          // set the current user state
-          this.props.setCurrentUser({
-            ...user.data,
-            mode: selectedOption
-          });
-
-          // Go to user dashboard
-
-          this.props.history.push(`/${selectedOption}page`);
-        })
-        .catch(error => {
-          console.log(error.message);
-        });
+    this.props.login({
+      email: email,
+      password: password,
+      selectedOption: selectedOption,
+      loginUrl: `/auth/${selectedOption}/login`
     });
   };
 
   render() {
+    if (this.props.doneFetching) {
+      // Go to user dashboard
+      this.props.history.push(`/${this.props.userType}page`);
+    }
     return (
       <form className="form-container">
         <h3 className="header-signIn">Login</h3>
-        <h4 className="error-signin">{this.state.error}</h4>
         <div className="form-group">
           <label>Email address</label>
           <input
@@ -138,7 +127,14 @@ class Signin extends Component {
   }
 }
 
-const mapDispatchToProps = dispatch => ({
-  setCurrentUser: user => dispatch(setCurrentUser(user))
+const mapStateToProps = state => ({
+  isFetching: selectIsFetchingUser(state),
+  doneFetching: selectDoneFetching(state),
+  userType: selectUserType(state)
 });
-export default connect(null, mapDispatchToProps)(withRouter(Signin));
+
+const mapDispatchToProps = dispatch => ({
+  setCurrentUser: user => dispatch(setCurrentUser(user)),
+  login: (data, userType) => dispatch(fetchUserAsync(data, userType))
+});
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Signin));

@@ -1,0 +1,113 @@
+.form-container-signUp {
+    width: 350px;
+    background-color: white;
+    border-top-left-radius: 15px;
+    padding: 3px 15px;
+    margin: 0 auto;
+  }
+  .signin-submit-button {
+    margin-top: 15px;
+  }
+  
+  @media screen and (max-width: 768px) {
+    .form-container-signUp {
+      width: 100vw;
+      background-color: white;
+      margin-left: auto;
+      border-top-left-radius: 0px;
+      padding: 3px 15px;
+      opacity: 1;
+    }
+  }
+  
+  .header-signIn {
+    text-align: center;
+    margin-bottom: 28px;
+    /* border: solid red 1px; */
+  }
+  .navbar-light {
+    background-color: #ffffff;
+    box-shadow: 0px 14px 80px rgba(34, 35, 58, 0.2);
+  }
+  
+  .auth-wrapper {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: left;
+  }
+  
+  .auth-inner {
+    width: 450px;
+    margin: auto;
+    background: #ffffff;
+    box-shadow: 0px 14px 80px rgba(34, 35, 58, 0.2);
+    padding: 40px 55px 45px 55px;
+    border-radius: 15px;
+    transition: all 0.3s;
+  }
+  
+  .auth-wrapper .form-control:focus {
+    border-color: #167bff;
+    box-shadow: none;
+  }
+  
+  .auth-wrapper h3 {
+    text-align: center;
+    margin: 0;
+    line-height: 1;
+    padding-bottom: 20px;
+  }
+  
+  .custom-control-label {
+    font-weight: 400;
+  }
+  
+  .forgot-password,
+  .forgot-password a {
+    text-align: right;
+    font-size: 13px;
+    padding-top: 10px;
+    color: #7f7d7d;
+    margin: 0;
+  }
+  
+  .forgot-password a {
+    color: #167bff;
+  }
+  .sign-in-option {
+    margin-top: 5px;
+  }
+  
+  
+  .loginBtn {
+    box-sizing: border-box;
+    position: relative;
+    /* width: 13em;  - apply for fixed size */
+    margin: 0.2em;
+    padding: 0 15px 0 46px;
+    border: none;
+    text-align: left;
+    line-height: 34px;
+    white-space: nowrap;
+    border-radius: 0.2em;
+    font-size: 16px;
+    color: #fff;
+  }
+  .loginBtn:before {
+    content: "";
+    box-sizing: border-box;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 34px;
+    height: 100%;
+  }
+  .loginBtn:focus {
+    outline: none;
+  }
+  .loginBtn:active {
+    box-shadow: inset 0 0 0 32px rgba(0, 0, 0, 0.1);
+  }
+  
+  

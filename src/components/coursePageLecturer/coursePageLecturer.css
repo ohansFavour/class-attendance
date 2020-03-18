@@ -1,0 +1,54 @@
+.lecturer-course-view-container {
+    width: 410px;
+    height: 350px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column; 
+    /* border: solid red 1px; */
+    
+  }
+  .course-lecturer-header{
+    font-size: 40px;
+    margin-bottom: 20px;
+  }
+  .lecturer-course-view-main-content {
+    width: 400px;
+    margin: 10px auto;
+    /* border: solid red 1px; */
+  }
+  .lecturer-course-view-main-content {
+    flex-grow: 1;
+  }
+  
+  .lecturer-course-view-main-content-heading {
+    height: 40px;
+    /* border: solid red 1px; */
+  }
+  .lecturer-course-view-button-container {
+    width: 100%;
+    display: flex;
+    /* justify-content: center; */
+    /* border: solid red 1px; */
+  }
+  .lecturer-course-view-courses-button {
+    
+    color: white;
+  }
+  .lecturer-course-view-courses-button-link {
+    text-decoration: none;
+    color: white;
+  }
+  .lecturer-course-view-courses-button-link:hover {
+    text-decoration: none;
+    color: white;
+  }
+  .lecturer-course-span{
+      font-weight: bold;
+  }
+  .attendance-history-button{
+  
+    color: white;
+    /* border: solid red 1px; */
+    margin-left: 20px;
+  }
+  
