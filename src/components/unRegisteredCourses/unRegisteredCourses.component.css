@@ -1,0 +1,23 @@
+.unregistered-courses-container{
+    width: 60%;
+    margin: 30px auto;
+}
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #dddddd;
+  }
+  .no-registered-course{
+      color: red;
+      font-style: italic;
+  }

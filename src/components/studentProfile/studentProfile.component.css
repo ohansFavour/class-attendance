@@ -1,0 +1,58 @@
+.student-profile-container {
+  width: 60vw;
+  margin: 10px auto;
+  /* background-color:  #e9ecef; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.student-profile-header {
+  font-size: 40px;
+  margin-bottom: 25px;
+  /* font-weight: bold; */
+}
+
+.student-profile-main-content-container {
+  height: 250px;
+  display: flex;
+  flex-direction: row;
+}
+.student-profile-main-content {
+  flex-grow: 1;
+}
+.student-profile-picture {
+  width: 120px;
+  height: 150px;
+  margin: auto 0;
+}
+
+.student-profile-main-content-heading {
+  height: 40px;
+}
+.student-page-button-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+.student-page-courses-button {
+}
+.student-page-courses-button-link {
+  text-decoration: none;
+  color: white;
+}
+.student-page-courses-button-link:hover {
+  text-decoration: none;
+  color: white;
+}
+
+@media only screen and (max-width: 844px) {
+  .student-profile-picture {
+    display: none;
+  }
+}
+@media only screen and (max-width: 644px) {
+  .student-profile-container {
+    width: 80vw;
+  }
+}

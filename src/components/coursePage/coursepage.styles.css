@@ -1,0 +1,30 @@
+.course-view-container {
+  width: 450px;
+  height:400px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+.header-course{
+  margin-bottom: 30px;
+}
+.course-view-main-content {
+  width: 90%;
+  margin: 10px auto;
+  /* border: solid red 1px; */
+}
+.course-view-main-content {
+  flex-grow: 1;
+}
+
+.course-view-main-content-heading {
+  height: 40px;
+  /* border: solid red 1px; */
+}
+.course-view-button-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+

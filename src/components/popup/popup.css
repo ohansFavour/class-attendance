@@ -1,0 +1,21 @@
+.popup-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 10px;
+}
+.close-attendance{
+    width:100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 30px;
+    margin-bottom: 50px;
+
+}
+.commited-students{
+    width:100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+}
