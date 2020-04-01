@@ -90,7 +90,7 @@ class LectureCourseAttendance extends Component {
   render() {
     return (
       <form className="form-container-signUp">
-        <h3 className="header-signIn">Create New Attendance</h3>
+        <h3 className="header-create-attendance">Create New Attendance</h3>
         <div className="form-group">
           <label>Session</label>
           <input

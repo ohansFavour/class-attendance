@@ -2,15 +2,9 @@ import {
   ASYNC_REGISTERED_COURSES_START,
   ASYNC_REGISTERED_COURSES_SUCCESS,
   ASYNC_REGISTERED_COURSES_FAILURE,
-  LOGOUT,
   ADD_COURSE_ATTENDANCE,
   attendanceTypes
 } from "./types";
-
-import {
-  addToParticularEntryNormalizedObject,
-  removeParticularEntryNormalizedObject
-} from "../functions";
 
 const INITIAL_STATE = {
   courses: null,
@@ -40,13 +34,7 @@ const registeredCoursesReducer = (state = INITIAL_STATE, action) => {
         isLoading: false,
         errorMessage: action.payload
       };
-    case LOGOUT:
-      return {
-        ...state,
-        courses: null,
-        isLoading: undefined,
-        errorMessage: undefined,
-      };
+   
     
     default:
       return state;

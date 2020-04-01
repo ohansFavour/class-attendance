@@ -1,0 +1,44 @@
+.attendance-history-component {
+  width: 100%;
+  /* text-align: center; */
+  /* border: solid red 1px; */
+  padding: 10px;
+}
+#close-session{
+  height: 20px;
+  border: solid red 1px;
+  margin-left: 12px;
+  color: red;
+  border-radius: 6px;
+  background-color: white;
+  outline: none;
+  position: relative;
+  top: -3px;
+  font-size: 10px;
+}
+.attendance-session-two{
+  margin-bottom: 50px;
+}
+.no-commited-student{
+  font-style: italic;
+}
+.detail-option{
+  margin: 10px 0;
+}
+.attendance-course-details {
+  /* border: solid red 1px; */
+}
+@media only screen and (min-width:700px ) {
+    .attendance-history-component {
+        width: 80%;
+        /* text-align: center; */
+        /* border: solid red 1px; */
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        /* border: solid red 1px; */
+        margin: 0 auto;
+      }
+}

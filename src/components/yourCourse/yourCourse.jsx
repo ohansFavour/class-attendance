@@ -5,7 +5,8 @@ import { withRouter } from "react-router-dom";
 import { denormalizeObject } from "../../functions";
 import Spinner from "react-bootstrap/Spinner";
 import Button from "react-bootstrap/Button";
-import {store} from "react-notifications-component"
+import Table from "react-bootstrap/Table";
+import { store } from "react-notifications-component";
 import {
   selectCurrentUser,
   selectRegisteredCourses,
@@ -31,27 +32,32 @@ class YourCourse extends React.Component {
       headers: {
         Accept: "application/json"
       }
-    }).then(() => {
-      this.props.getRegisteredCourses(this.props.mode, this.props.currentUser);
-    }).catch(error=>{
-      const message = error.response.data.message
-      ? error.response.data.message
-      : "Error unregistering course!";
-    store.addNotification({
-      title: "Error!",
-      message: message,
-      width: 400,
-      type: "danger",
-      insert: "top",
-      container: "top-left",
-      animationIn: ["animated", "fadeIn"],
-      animationOut: ["animated", "fadeOut"],
-      dismiss: {
-        duration: 5000,
-        onScreen: true
-      }
-    });
     })
+      .then(() => {
+        this.props.getRegisteredCourses(
+          this.props.mode,
+          this.props.currentUser
+        );
+      })
+      .catch(error => {
+        const message = error.response.data.message
+          ? error.response.data.message
+          : "Error unregistering course!";
+        store.addNotification({
+          title: "Error!",
+          message: message,
+          width: 400,
+          type: "danger",
+          insert: "top",
+          container: "top-left",
+          animationIn: ["animated", "fadeIn"],
+          animationOut: ["animated", "fadeOut"],
+          dismiss: {
+            duration: 5000,
+            onScreen: true
+          }
+        });
+      });
   };
 
   handleUnregister = async courseID => {
@@ -101,7 +107,7 @@ class YourCourse extends React.Component {
   render() {
     const { isFetching, error } = this.props;
     return (
-      <div className="registered-courses-container">
+      <div className="your-courses-container">
         {isFetching ? (
           <Spinner animation="border" variant="primary" />
         ) : (
@@ -109,52 +115,59 @@ class YourCourse extends React.Component {
             {!!!error &&
             Array.isArray(this.props.registeredCourses) &&
             this.props.registeredCourses.length !== 0 ? (
-              <table>
-                <tr className="table-row-header">
-                  <th className="table-content-header">Course Title</th>
-                  <th className="table-content-header">Course Code</th>
-                  <th></th>
-                  <th></th>
-                  <th></th>
-                </tr>
-                {this.props.registeredCourses.map(course => {
-                  return (
-                    <tr key={course.public_id} className="table-row">
-                      <td className="table-content-title">
-                        {" "}
-                        {course.course_title}
-                      </td>
-                      <td className="table-content"> {course.course_code}</td>
-                      <td className="table-content">
-                        <Button
-                          variant="outline-primary"
-                          onClick={() => this.handleView(course)}
-                        >
-                          View
-                        </Button>
-                      </td>
-                      <td className="table-content">
-                        <Button
-                          variant="outline-primary"
-                          onClick={() =>
-                            this.handleUnregister(course.public_id)
-                          }
-                        >
-                          Unregister
-                        </Button>
-                      </td>
-                      <td className="table-content delete">
-                        <Button
-                          variant="outline-danger"
-                          onClick={() => this.handleDelete(course.public_id)}
-                        >
-                          Delete
-                        </Button>
-                      </td>
-                    </tr>
-                  );
-                })}
-              </table>
+              <Table striped bordered hover>
+                <thead>
+                  <tr>
+                    <th>Course Title</th>
+                    <th>Course Code</th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {this.props.registeredCourses.map(course => {
+                    return (
+                      <tr key={course.public_id} className="table-row">
+                        <td className="table-content-title">
+                          {" "}
+                          {course.course_title}
+                        </td>
+                        <td className="table-content"> {course.course_code}</td>
+                        <td className="table-content">
+                          <Button
+                            variant="outline-primary"
+                            onClick={() => this.handleView(course)}
+                            size="sm"
+                          >
+                            View
+                          </Button>
+                        </td>
+                        <td className="table-content">
+                          <Button
+                            variant="outline-primary"
+                            onClick={() =>
+                              this.handleUnregister(course.public_id)
+                            }
+                            size="sm"
+                          >
+                            Unregister
+                          </Button>
+                        </td>
+                        <td className="table-content delete">
+                          <Button
+                            size="sm"
+                            variant="outline-danger"
+                            onClick={() => this.handleDelete(course.public_id)}
+                          >
+                            Delete
+                          </Button>
+                        </td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </Table>
             ) : null}
           </React.Fragment>
         )}

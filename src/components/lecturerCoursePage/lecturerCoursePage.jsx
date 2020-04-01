@@ -18,7 +18,7 @@ class LecturerCoursePage extends React.Component {
     const { display } = this.state;
     return (
       <div className="lecturer-course-page">
-        <div className="column-one">
+        <div className="column-one-lecturerCourse">
           <div
             className={`lecturer-course-page-column1-item  ${
               display == 1 ? "purple-color" : ""
@@ -59,18 +59,18 @@ class LecturerCoursePage extends React.Component {
             Create New Course
           </div>
         </div>
-        <div className="column-two">
+        <div className="column-two-lecturerCourse">
           {this.state.display == 1 ? (
             <React.Fragment>
               <div className="lecturer-course-page-your-course-header">
-                <h1>Your Courses</h1>
+                <h3>Your Courses</h3>
               </div>
               <YourCourse />
             </React.Fragment>
           ) : null}
           {this.state.display == 2 ? (
             <div>
-              <h1 className="lecturer-course-page-your-course-header" >Unregistered Courses</h1>
+              <h3 className="lecturer-course-page-your-course-header" >Unregistered Courses</h3>
               <LecturerUnregistered />
             </div>
           ) : null}

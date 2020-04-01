@@ -1,19 +1,19 @@
 import React from "react";
-import {connect} from "react-redux";
-import {withRouter, Link} from "react-router-dom";
+import { connect } from "react-redux";
+import { withRouter, Link } from "react-router-dom";
 
 import Logo from "../../accessories/oau.png";
-import {logoutAction} from "../../redux/actions";
+import { logoutAction } from "../../redux/actions";
 
 import "./lecturerPageHeader.css";
 
 class LecturerPageHeader extends React.Component {
-
-  handleLogout = ()=>{
-   //logout
-    this.props.logout();
+  handleLogout = async () => {
+    //logout
     this.props.history.push("/");
-  }
+    this.props.logout();
+    
+  };
   render() {
     return (
       <div className="lecturer-page-header-container">
@@ -21,9 +21,30 @@ class LecturerPageHeader extends React.Component {
           <img src={Logo} className="lecturer-page-header-logo" />
         </div>
         <div className="lecturer-page-header-options">
-          <Link to={`${this.props.match.path}`} className="lecturer-page-header-option">Profile</Link>
-          <Link to={`${this.props.match.path}/courses`} className="lecturer-page-header-option">Courses</Link>
-          <div className="lecturer-page-header-option" onClick={this.handleLogout}>Logout</div>
+          <Link
+            to={`${this.props.match.path}`}
+            className="lecturer-page-header-option"
+          >
+            Profile
+          </Link>
+          <Link
+            to={`${this.props.match.path}/courses`}
+            className="lecturer-page-header-option"
+          >
+            Courses
+          </Link>
+          <Link
+            to={`${this.props.match.path}/attendance`}
+            className="student-page-header-option"
+          >
+            Attendance
+          </Link>
+          <div
+            className="lecturer-page-header-option"
+            onClick={this.handleLogout}
+          >
+            Logout
+          </div>
         </div>
       </div>
     );
@@ -32,4 +53,7 @@ class LecturerPageHeader extends React.Component {
 const mapDispatchToProps = dispatch => ({
   logout: () => dispatch(logoutAction())
 });
-export default connect(null, mapDispatchToProps)(withRouter(LecturerPageHeader));
+export default connect(
+  null,
+  mapDispatchToProps
+)(withRouter(LecturerPageHeader));

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Axios from "axios";
+import Button from "react-bootstrap/Button";
 import { connect } from "react-redux";
 import Select from "react-select";
 import { withRouter } from "react-router-dom";
@@ -106,17 +106,16 @@ class SignUp extends Component {
     }
 
     if (selectedOption === "lecturer") {
-
       this.props.createNewStudent({
         details: {
-        lecturer_id: publicId,
-        first_name: firstName,
-        last_name: lastName,
-        email_address: email,
-        faculty: faculty.value,
-        department: department,
-        level: level,
-        password: password
+          lecturer_id: publicId,
+          first_name: firstName,
+          last_name: lastName,
+          email_address: email,
+          faculty: faculty.value,
+          department: department,
+          level: level,
+          password: password
         },
         url: `/${selectedOption}/`
       });
@@ -130,149 +129,152 @@ class SignUp extends Component {
     }
     const { isCreating } = this.props;
     return (
-      <div className="sign-up-page-container">
-        {isCreating ? (
-         <Spinner variant="primary"  className="spinner" animation="border" />
-        ) : (
-          <React.Fragment>
-            <div className="sign-up-page-fixed"> </div>
-            <form className="form-container-signUp">
-              <h3 className="header-signIn">Sign Up</h3>
-              <div className="form-group">
-                <label>First Name</label>
-                <input
-                  type="name"
-                  className="form-control"
-                  placeholder=""
-                  name="firstName"
-                  onChange={this.handleChange}
-                  value={this.state.firstName}
+      <div className="sign-up-view">
+        <div className="sign-up-page-container-view">
+          {isCreating ? (
+            <Spinner variant="primary" className="spinner" animation="border" />
+          ) : (
+            <React.Fragment>
+              <div className="sign-up-page-fixed"> </div>
+              <form className="form-container-signUp">
+                <h3 className="header-signIn">Sign Up</h3>
+                <div className="form-group">
+                  <label>First Name</label>
+                  <input
+                    type="name"
+                    className="form-control"
+                    placeholder=""
+                    name="firstName"
+                    onChange={this.handleChange}
+                    value={this.state.firstName}
+                  />
+                </div>
+                <div className="form-group">
+                  <label>Last Name</label>
+                  <input
+                    type="name"
+                    className="form-control"
+                    placeholder=""
+                    name="lastName"
+                    onChange={this.handleChange}
+                    value={this.state.lastName}
+                  />
+                </div>
+                <label>Faculty</label>
+                <Select
+                  value={this.state.faculty}
+                  onChange={this.handleFaculty}
+                  options={options}
+                  placeholder="Select Faculty"
                 />
-              </div>
-              <div className="form-group">
-                <label>Last Name</label>
+                <br />
+                <div className="form-group">
+                  <label>Department</label>
+                  <input
+                    type="name"
+                    className="form-control"
+                    placeholder="Enter Department"
+                    name="department"
+                    onChange={this.handleChange}
+                    value={this.state.department}
+                  />
+                </div>
+                <div className="form-group">
+                  <label>Level</label>
+                  <input
+                    type="name"
+                    className="form-control"
+                    placeholder="Eg. 400"
+                    name="level"
+                    onChange={this.handleChange}
+                    value={this.state.level}
+                  />
+                </div>
+                <div className="form-group">
+                  <label>Email address</label>
+                  <input
+                    type="email"
+                    className="form-control"
+                    placeholder=""
+                    name="email"
+                    onChange={this.handleChange}
+                    value={this.state.email}
+                  />
+                </div>
+                <div className="form-group">
+                  <label>Password</label>
+                  <input
+                    type="password"
+                    className="form-control"
+                    placeholder="Enter password"
+                    name="password"
+                    onChange={this.handleChange}
+                    value={this.state.password}
+                  />
+                </div>
                 <input
-                  type="name"
-                  className="form-control"
-                  placeholder=""
-                  name="lastName"
-                  onChange={this.handleChange}
-                  value={this.state.lastName}
-                />
-              </div>
-              <label>Faculty</label>
-              <Select
-                value={this.state.faculty}
-                onChange={this.handleFaculty}
-                options={options}
-                placeholder="Select Faculty"
-              />
-              <br />
-              <div className="form-group">
-                <label>Department</label>
+                  type="radio"
+                  name="human"
+                  value="student"
+                  onChange={this.handleRadioChange}
+                />{" "}
+                Student
+                <br />
                 <input
-                  type="name"
-                  className="form-control"
-                  placeholder="Enter Department"
-                  name="department"
-                  onChange={this.handleChange}
-                  value={this.state.department}
-                />
-              </div>
-              <div className="form-group">
-                <label>Level</label>
-                <input
-                  type="name"
-                  className="form-control"
-                  placeholder="Eg. 400"
-                  name="level"
-                  onChange={this.handleChange}
-                  value={this.state.level}
-                />
-              </div>
-              <div className="form-group">
-                <label>Email address</label>
-                <input
-                  type="email"
-                  className="form-control"
-                  placeholder=""
-                  name="email"
-                  onChange={this.handleChange}
-                  value={this.state.email}
-                />
-              </div>
-              <div className="form-group">
-                <label>Password</label>
-                <input
-                  type="password"
-                  className="form-control"
-                  placeholder="Enter password"
-                  name="password"
-                  onChange={this.handleChange}
-                  value={this.state.password}
-                />
-              </div>
-              <input
-                type="radio"
-                name="human"
-                value="student"
-                onChange={this.handleRadioChange}
-              />{" "}
-              Student
-              <br />
-              <input
-                type="radio"
-                name="human"
-                value="lecturer"
-                onChange={this.handleRadioChange}
-              />{" "}
-              Lecturer <br />
-              <div className="form-group">
-                {this.state.selectedOption === "student" ? (
-                  <React.Fragment>
-                    <label>RFID</label>
-                    <input
-                      type="name"
-                      className="form-control"
-                      name="rfId"
-                      onChange={this.handleChange}
-                      value={this.state.rfId}
-                    />
-                  </React.Fragment>
-                ) : null}
+                  type="radio"
+                  name="human"
+                  value="lecturer"
+                  onChange={this.handleRadioChange}
+                />{" "}
+                Lecturer <br />
+                <div className="form-group">
+                  {this.state.selectedOption === "student" ? (
+                    <React.Fragment>
+                      <label>RFID</label>
+                      <input
+                        type="name"
+                        className="form-control"
+                        name="rfId"
+                        onChange={this.handleChange}
+                        value={this.state.rfId}
+                      />
+                    </React.Fragment>
+                  ) : null}
 
-                <label>
-                  {this.state.selectedOption === "student"
-                    ? "Matric number"
-                    : "ID"}
-                </label>
-                <input
-                  type="name"
-                  className="form-control"
-                  name="publicId"
-                  onChange={this.handleChange}
-                  value={this.state.publicId}
-                />
-              </div>
-              <button
-                type="submit"
-                onClick={this.handleSubmit}
-                className="btn btn-primary btn-block signin-submit-button"
-              >
-                Submit
-              </button>
-              <div className=" home-button-sign-up-container">
+                  <label>
+                    {this.state.selectedOption === "student"
+                      ? "Matric number"
+                      : "ID"}
+                  </label>
+                  <input
+                    type="name"
+                    className="form-control"
+                    name="publicId"
+                    onChange={this.handleChange}
+                    value={this.state.publicId}
+                  />
+                </div>
                 <button
-                  className="btn btn-success home-button-sign-up"
-                  onClick={this.handleHome}
+                  type="submit"
+                  onClick={this.handleSubmit}
+                  className="btn btn-primary btn-block signin-submit-button"
                 >
-                  home
+                  Submit
                 </button>
-              </div>
-            </form>
-            <div className="sign-up-page-fixed"> </div>
-          </React.Fragment>
-        )}
+                <div className=" home-button-sign-up-container">
+                  <Button
+                    className=" home-button-sign-up"
+                    onClick={this.handleHome}
+                    variant="outline-success"
+                  >
+                    home
+                  </Button>
+                </div>
+              </form>
+              <div className="sign-up-page-fixed"> </div>
+            </React.Fragment>
+          )}
+        </div>
       </div>
     );
   }

@@ -3,8 +3,8 @@ import { connect } from "react-redux";
 import Axios from "axios";
 import Spinner from "react-bootstrap/Spinner";
 import Button from "react-bootstrap/Button";
-import {store} from "react-notifications-component";
-
+import { store } from "react-notifications-component";
+import Table from "react-bootstrap/Table";
 import { withRouter } from "react-router-dom";
 import { denormalizeObject } from "../../functions";
 
@@ -16,7 +16,6 @@ import {
   selectIsLoadingUnregisteredCourses
 } from "../../redux/selectors";
 import { getCourses, setCourseView } from "../../redux/actions";
-import { proxyurl, baseURL } from "../../constants";
 
 import "./lecturerUnregistered.css";
 
@@ -31,7 +30,6 @@ class LecturerUnregistered extends React.Component {
 
   handleRegister = async courseID => {
     const { id, mode } = this.props;
-    console.log(id, mode, courseID);
 
     // Registers a course
 
@@ -83,41 +81,47 @@ class LecturerUnregistered extends React.Component {
             {!!!error &&
             Array.isArray(this.props.unregisteredCourses) &&
             this.props.unregisteredCourses.length ? (
-              <table>
-                <tr className="table-row-header">
-                  <th className="table-content-header">Course Title</th>
-                  <th className="table-content-header">Course Code</th>
-                  <th></th>
-                  <th></th>
-                </tr>
-                {this.props.unregisteredCourses.map(course => {
-                  return (
-                    <tr key={course.public_id} className="table-row">
-                      <td className="table-content-title">
-                        {" "}
-                        {course.course_title}
-                      </td>
-                      <td className="table-content"> {course.course_code}</td>
-                      <td className="table-content">
+              <Table striped bordered hover>
+                <thead>
+                  <tr>
+                    <th>Course Title</th>
+                    <th>Course Code</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {this.props.unregisteredCourses.map(course => {
+                    return (
+                      <tr key={course.public_id} className="table-row">
+                        <td className="table-content-title">
+                          {" "}
+                          {course.course_title}
+                        </td>
+                        <td className="table-content"> {course.course_code}</td>
+                        {/* <td className="table-content">
                         <Button
                           variant="outline-primary"
                           onClick={() => this.handleView(course)}
                         >
                           View
                         </Button>
-                      </td>
-                      <td className="table-content">
-                        <Button
-                          variant="outline-primary"
-                          onClick={() => this.handleRegister(course.public_id)}
-                        >
-                          Register
-                        </Button>
-                      </td>
-                    </tr>
-                  );
-                })}
-              </table>
+                      </td> */}
+                        <td className="table-content">
+                          <Button
+                          size="sm"
+                            variant="outline-primary"
+                            onClick={() =>
+                              this.handleRegister(course.public_id)
+                            }
+                          >
+                            Register
+                          </Button>
+                        </td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </Table>
             ) : null}
           </React.Fragment>
         )}

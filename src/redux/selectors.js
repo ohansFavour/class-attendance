@@ -1,5 +1,5 @@
 import { createSelector } from "reselect";
-
+import {denormalizeObject} from "../functions";
 const selectUser = state => state.user;
 const selectRegistered = state => state.registeredCourses;
 const selectUnregistered = state => state.unregisteredCourses;
@@ -19,6 +19,16 @@ export const selectAttendanceObject =createSelector(
   [selectAttendanceReducer],
   attendance => attendance
 );
+export const selectAttendanceProfiles =createSelector(
+  [selectAttendanceReducer],
+  attendance => denormalizeObject(attendance.attendanceProfiles)
+);
+
+export const selectIsLoadingAttendanceProfiles =createSelector(
+  [selectAttendanceReducer],
+  attendance => attendance.loadingProfiles
+);
+
 export const selectAttendanceIsLoading =createSelector(
   [selectAttendanceReducer],
   attendance => attendance.isLoading

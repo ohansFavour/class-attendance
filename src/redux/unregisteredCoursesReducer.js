@@ -2,7 +2,6 @@ import {
   ASYNC_UNREGISTERED_COURSES_START,
   ASYNC_UNREGISTERED_COURSES_SUCCESS,
   ASYNC_UNREGISTERED_COURSES_FAILURE,
-  LOGOUT,
   ADD_COURSE_ATTENDANCE
 } from "./types";
 
@@ -37,12 +36,7 @@ const unregisteredCoursesReducer = (state = INITIAL_STATE, action) => {
         errorMessage: action.payload,
         courses: null
       };
-    case LOGOUT:
-      return {
-        courses: null,
-        isLoading: undefined,
-        errorMessage: undefined
-      };
+    
 
     case ADD_COURSE_ATTENDANCE:
       const newCourse = addToParticularEntryNormalizedObject(

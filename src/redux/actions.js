@@ -10,12 +10,28 @@ import {
   ASYNC_REGISTERED_COURSES_FAILURE,
   SET_COURSE_VIEW,
   ADD_COURSE_ATTENDANCE,
-  LOGOUT,
-  attendanceTypes
+  USER_LOGOUT,
+  attendanceTypes,
+  commitedStudents
 } from "./types";
 
 import { normalizeArray } from "../functions";
 
+export const isLoadingCommitedStudents = attendanceId => ({
+  type: commitedStudents.IS_LOADING_COMMITED_STUDENTS,
+  payload: attendanceId
+});
+
+export const commitedStudentsFailure = attendanceId => ({
+  type: commitedStudents.COMMITED_STUDENTS_FAILURE,
+  payload: attendanceId
+});
+
+export const commitedStudentsSuccess = (attendanceId, data) => ({
+  type: commitedStudents.COMMITED_STUDENTS_SUCCESS,
+  attendanceId,
+  data
+});
 export const setCurrentUser = currentUser => {
   return {
     type: SET_CURRENT_USER,
@@ -57,7 +73,7 @@ export const setCourseView = course => ({
 });
 
 export const logoutAction = () => ({
-  type: LOGOUT
+  type: USER_LOGOUT
 });
 
 export const addCourseAttendance = (data, courseId) => ({
@@ -89,7 +105,7 @@ export const commitSuccess = (data, courseId) => ({
   courseId: courseId
 });
 
-export const commitFailure = (courseId) => ({
+export const commitFailure = courseId => ({
   type: attendanceTypes.ATTENDANCE_COMMITS_FAILURE,
   courseId: courseId
 });
@@ -97,6 +113,19 @@ export const commitFailure = (courseId) => ({
 export const clearAttendance = courseId => ({
   type: attendanceTypes.CLEAR_ATTENDANCE,
   payload: courseId
+});
+
+export const isLoadingAttendanceProfiles = () => ({
+  type: attendanceTypes.IS_LOADING_ATT_PROFILES
+});
+
+export const attendanceProfilesSuccess = data => ({
+  type: attendanceTypes.ATT_PROFILES_SUCCESS,
+  payload: normalizeArray(data)
+});
+
+export const attendanceProfilesFailure = () => ({
+  type: attendanceTypes.ATT_PROFILES_FAILURE
 });
 
 export const addCourseToUser = (mode, userPublicId, response) => {
@@ -233,7 +262,7 @@ export const getCourses = (mode, currentUser, isRegistered) => {
   }
 };
 
-export const setCommit = (attendanceId , courseId)=> {
+export const setCommit = (attendanceId, courseId) => {
   return async dispatch => {
     dispatch(isLoadingCommit());
     await Axios.get(`/attendance/student/${attendanceId}`)

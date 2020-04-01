@@ -1,35 +1,84 @@
-.lecturer-course-page{
+.lecturer-course-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.column-one-lecturerCourse {
+  height: 150px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(66, 133, 244, 1);
+  color: white;
+  margin-bottom:20px;
+  width: 250px;
+  border-top-left-radius: 14px;
+  /* border: solid red 1px; */
+}
+.column-two-lecturerCourse {
+  width: 100%;
+  padding:10px;
+}
+
+.lecturer-course-page-column1-item {
+  color: white;
+  padding: 5px;
+  cursor: pointer;
+}
+
+.lecturer-course-page-column1-item:hover {
+  color: purple;
+}
+.lecturer-course-page-your-course-header {
+  display: flex;
+  justify-content: center;
+}
+.purple-color {
+  color: purple;
+}
+
+@media only screen and (min-width: 800px) {
+  .lecturer-course-page {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 20px;
+  }
+
+  .column-two-lecturerCourse {
+    width: 100%;
+    margin-left: 30px;
+    padding:0
+  }
+}
+
+/* @media only screen and (min-width: 700px) {
+  .lecturer-course-page {
     display: grid;
     grid-template-columns: 1fr 3fr;
-    grid-template-areas: "column-one column-two";  
+    grid-template-areas: "column-one column-two";
+    padding: 10px;
+  }
 
-}
-
-.column-one{
- grid-area: column-one;
- height: 150px;
- display: flex;
- flex-direction: column;
- align-items: center;
- justify-content: center;
- background-color: rgba(66,133,244,1);
-}
-.column-two{
- grid-area: column-two;
- height:80vh;
-}
-.lecturer-course-page-column1-item{
+  .column-one {
+    grid-area: column-one;
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(66, 133, 244, 1);
+  }
+  .column-two {
+    grid-area: column-two;
+    height: 80vh;
+  }
+  .lecturer-course-page-column1-item {
     color: white;
     padding: 5px;
     cursor: pointer;
-}
-.lecturer-course-page-column1-item:hover{
-    color: purple;
-}
-.lecturer-course-page-your-course-header{
-    display: flex;
-    justify-content: center;
-}
-.purple-color{
-    color: purple;
-}
+  }
+} */

@@ -1,4 +1,4 @@
-import { SET_CURRENT_USER, SET_COURSE_VIEW, LOGOUT } from "./types";
+import { SET_CURRENT_USER, SET_COURSE_VIEW } from "./types";
 import signinTypes from "./sign-in/signinTypes";
 
 const INITIAL_STATE = {
@@ -33,14 +33,6 @@ const userReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         courseView: action.payload
-      };
-    case LOGOUT:
-      return {
-        currentUser: null,
-        courseView: null,
-        isFetching: false,
-        doneFetching: false,
-        userType: null
       };
     default:
       return state;

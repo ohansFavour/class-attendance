@@ -7,7 +7,7 @@ import StudentPageHeader from "../../components/studentPageHeader/studentPageHea
 import StudentProfileContainer from "../../components/studentProfile/studentProfileContainer.component";
 import StudentCoursesPage from "../../components/studentCoursesPage/studentCoursesPage.component";
 import CoursePage from "../../components/coursePage/coursepage.component";
-import AttendancePage from "../attendancePage/attendancePage";
+
 
 import "./studentPage.css";
 
@@ -22,13 +22,6 @@ const StudentPage = props => {
           path={props.match.path}
           render={props => (
             <StudentProfileContainer {...props} currentUser={currentUser} />
-          )}
-        />
-        <Route
-          exact
-          path={`${props.match.path}/attendance`}
-          render={props => (
-            <AttendancePage {...props} currentUser={currentUser} />
           )}
         />
         <Route

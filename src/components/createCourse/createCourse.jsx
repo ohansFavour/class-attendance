@@ -3,10 +3,9 @@ import { connect } from "react-redux";
 import Select from "react-select";
 
 import { createAndAddCourse } from "../../redux/actions";
-import {
-  selectCurrentUser,
-  selectUserType
-} from "../../redux/selectors";
+import { selectCurrentUser, selectUserType } from "../../redux/selectors";
+
+import "./createCourse.css";
 
 const options = [
   { value: "technology", label: "Technology" },
@@ -48,10 +47,12 @@ class CreateCourse extends React.Component {
     } else if (value == "general") {
       bool = false;
     }
-    this.setState({
-      strict: bool
-    },()=> console.log(this.state.strict));
-    
+    this.setState(
+      {
+        strict: bool
+      },
+      () => console.log(this.state.strict)
+    );
   };
 
   handleFaculty = faculty => {
@@ -78,72 +79,74 @@ class CreateCourse extends React.Component {
   };
   render() {
     return (
-      <form className="form-container-signUp">
-        <h3 className="header-signIn">Create New Course</h3>
-        <div className="form-group">
-          <label>Course Title</label>
-          <input
-            type="name"
-            className="form-control"
-            placeholder="Enter Course Title"
-            name="course_title"
-            onChange={this.handleChange}
-            value={this.state.course_title}
+      <div className="create-course-container">
+        <form className="form-container-create-course">
+          <h3 className="header-signIn">Create New Course</h3>
+          <div className="form-group">
+            <label>Course Title</label>
+            <input
+              type="name"
+              className="form-control"
+              placeholder="Enter Course Title"
+              name="course_title"
+              onChange={this.handleChange}
+              value={this.state.course_title}
+            />
+          </div>
+          <div className="form-group">
+            <label>Course Code</label>
+            <input
+              type="name"
+              className="form-control"
+              placeholder="Enter Course Code"
+              name="course_code"
+              onChange={this.handleChange}
+              value={this.state.course_code}
+            />
+          </div>
+          <label>Faculty</label>
+          <Select
+            value={this.state.faculty}
+            onChange={this.handleFaculty}
+            options={options}
+            placeholder="Select Faculty"
           />
-        </div>
-        <div className="form-group">
-          <label>Course Code</label>
+          <br />
+          <div className="form-group">
+            <label>Department</label>
+            <input
+              type="name"
+              className="form-control"
+              placeholder="Enter Department"
+              name="department"
+              onChange={this.handleChange}
+              value={this.state.department}
+            />
+          </div>
           <input
-            type="name"
-            className="form-control"
-            placeholder="Enter Course Code"
-            name="course_code"
-            onChange={this.handleChange}
-            value={this.state.course_code}
-          />
-        </div>
-        <label>Faculty</label>
-        <Select
-          value={this.state.faculty}
-          onChange={this.handleFaculty}
-          options={options}
-          placeholder="Select Faculty"
-        />
-        <br />
-        <div className="form-group">
-          <label>Department</label>
+            type="radio"
+            name="human"
+            value="strict"
+            onChange={this.handleRadioChange}
+          />{" "}
+          Strict
+          <br />
           <input
-            type="name"
-            className="form-control"
-            placeholder="Enter Department"
-            name="department"
-            onChange={this.handleChange}
-            value={this.state.department}
-          />
-        </div>
-        <input
-          type="radio"
-          name="human"
-          value="strict"
-          onChange={this.handleRadioChange}
-        />{" "}
-        Strict
-        <br />
-        <input
-          type="radio"
-          name="human"
-          value="general"
-          onChange={this.handleRadioChange}
-        />{" "}
-        General <br />
-        <button
-          type="submit"
-          onClick={this.handleSubmit}
-          className="btn btn-primary btn-block signin-submit-button"
-        >
-          Submit
-        </button>
-      </form>
+            type="radio"
+            name="human"
+            value="general"
+            onChange={this.handleRadioChange}
+          />{" "}
+          General <br />
+          <button
+            type="submit"
+            onClick={this.handleSubmit}
+            className="btn btn-primary btn-block create-submit-button"
+          >
+            Submit
+          </button>
+        </form>
+      </div>
     );
   }
 }

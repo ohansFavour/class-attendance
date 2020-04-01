@@ -11,10 +11,9 @@ import Logo from "../../accessories/oau.png";
 import "./studentPageHeader.css";
 
 class StudentPageHeader extends React.Component {
-
   handleLogout = async () => {
-     await this.props.logout();
-     this.props.history.push("/");
+    this.props.history.push("/");
+    await this.props.logout();
   };
   render() {
     return (
@@ -35,14 +34,8 @@ class StudentPageHeader extends React.Component {
           >
             Courses
           </Link>
-          <Link
-            to={`${this.props.match.path}/attendance`}
-            className="student-page-header-option"
-          >
-            Attendance
-          </Link>
+
           <div
-            
             onClick={this.handleLogout}
             className="student-page-header-option-logout"
           >
@@ -54,7 +47,7 @@ class StudentPageHeader extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   mode: selectUserType(state)
 });
 const mapDispatchToProps = dispatch => ({

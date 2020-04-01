@@ -1,18 +1,25 @@
 .lecturer-course-view-container {
-    width: 410px;
+    width: 90%;
     height: 350px;
-    margin: 0 auto;
+    margin: 0px auto;
     display: flex;
     flex-direction: column; 
     /* border: solid red 1px; */
+    justify-content: center;
+    align-items: center;
     
+  }
+  @media screen and (min-width: 600px){
+    .lecturer-course-view-container{
+      width: 450px;
+    }
   }
   .course-lecturer-header{
     font-size: 40px;
     margin-bottom: 20px;
   }
   .lecturer-course-view-main-content {
-    width: 400px;
+    width: 100%;
     margin: 10px auto;
     /* border: solid red 1px; */
   }

@@ -1,17 +1,23 @@
-.sign-up-page-container{
-  width: 98.7vw;
+.sign-up-view{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.sign-up-page-container-view{
+  width: 100%;
   background-color: #f2f2f2;
   display:flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  /* border: solid red 1px; */
 }
 .spinner{
   position: absolute;
   top: 50vh;
 }
 .form-container-signUp{
-  min-width: 400px;
+  width: 100%;
   background-color: white;
 }
 .sign-up-page-fixed{
@@ -28,9 +34,9 @@
   justify-content: center;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (min-width: 768px) {
   .form-container-signUp {
-    width: 100vw;
+    width: 400px;
     background-color: white;
     margin-left: auto;
     border-top-left-radius: 0px;

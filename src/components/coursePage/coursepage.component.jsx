@@ -42,7 +42,7 @@ class Course extends React.Component {
             </p>
           </div>
           <div className="course-view-button-container">
-            <Button className="course-view-courses-button" onClick={this.handleAttendance}>Attendance</Button>
+            <Button className="course-view-courses-button" variant="outline-primary" onClick={this.handleBack}>Back</Button>
           </div>
         </div>
       </React.Fragment>

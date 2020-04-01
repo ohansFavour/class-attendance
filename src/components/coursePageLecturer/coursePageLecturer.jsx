@@ -29,16 +29,9 @@ class LecturerCourse extends React.Component {
     this.props.history.push(`./${courseId}/attendance`);
   };
 
-  handleAttendanceHistory = async () => {
-    const { course, attendance } = this.props;
-     console.log(course.public_id)
-    if (!!attendance[course.public_id]) {
-      //set commit attendance details
-      this.props.setCommit(
-        attendance[course.public_id].public_id,
-        course.public_id
-      );
-    }
+  handleAttendanceHistory = async (event, courseId) => {
+    event.preventDefault();
+    this.props.history.push(`./${courseId}/attendance-history`);
   };
 
   render() {
@@ -70,6 +63,7 @@ class LecturerCourse extends React.Component {
           </div>
           <div className="lecturer-course-view-button-container">
             <Button
+            size="sm"
               onClick={event =>
                 this.handleCreateAttendance(event, course.public_id)
               }
@@ -78,57 +72,16 @@ class LecturerCourse extends React.Component {
             >
               Create Attendance
             </Button>
-            <div>
-              <Popup
-                onOpen={this.handleAttendanceHistory}
-                trigger={
-                  <Button
-                    variant="primary"
-                    className="attendance-history-button"
-                  >
-                    {" "}
-                    Attendance History{" "}
-                  </Button>
-                }
-                modal
-                closeOnDocumentClick
-              >
-                <div>
-                  {!!!registeredCourses[course.public_id] ? (
-                    <span>
-                      Sorry, you cannot create an attendance for this course!
-                    </span>
-                  ) : (
-                    <React.Fragment>
-                      {!!!attendance[course.public_id] ? (
-                        "No attendance session available for this course!"
-                      ) : (
-                        <React.Fragment>
-                          {isLoading ? (
-                            <Spinner variant="primary" animation="border" />
-                          ) : (
-                            <React.Fragment>
-                              {!!attendance[course.public_id].commits ? (
-                                <div>
-                                  <Pop
-                                    array={attendance[course.public_id].commits}
-                                    courseId={course.public_id}
-                                    attendanceId={
-                                      attendance[course.public_id].public_id
-                                    }
-                                    courseCode={course.course_code}
-                                  />
-                                </div>
-                              ) : null}
-                            </React.Fragment>
-                          )}
-                        </React.Fragment>
-                      )}
-                    </React.Fragment>
-                  )}
-                </div>
-              </Popup>
-            </div>
+            <Button
+            size="sm"
+              onClick={event =>
+                this.handleAttendanceHistory(event, course.public_id)
+              }
+              className="attendance-history-button"
+              variant="primary"
+            >
+              Attendance History
+            </Button>
           </div>
         </div>
       </React.Fragment>
@@ -143,7 +96,8 @@ const mapStateToProps = state => ({
   isLoading: selectAttendanceIsLoading(state)
 });
 const mapDispatchToProps = dispatch => ({
-  setCommit: (attendanceId, courseId) => dispatch(setCommit(attendanceId, courseId))
+  setCommit: (attendanceId, courseId) =>
+    dispatch(setCommit(attendanceId, courseId))
 });
 export default connect(
   mapStateToProps,

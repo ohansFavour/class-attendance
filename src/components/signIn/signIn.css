@@ -1,31 +1,33 @@
-
-
-.form-container{
-    width:350px;
-    background-color: white;
-    border-top-left-radius: 15px;
-    padding: 3px 15px;
-    margin-top: 10vh;
+.form-container-view{
+  display: flex;
+  justify-content: center;
 }
-.signin-submit-button{
+.form-container {
+  width: 350px;
+  background-color: white;
+  border-top-left-radius: 15px;
+  padding: 3px 15px;
+  margin-top: 10vh;
+}
+.signin-submit-button {
   margin-top: 15px;
 }
 
-@media screen and (max-width:768px){
-  .form-container{
-    width:100vw;
+@media only screen and (max-width: 680px) {
+  .form-container {
+    width: 100%;
     background-color: white;
-    margin-left: auto;
+    margin-top: 10vh;
     border-top-left-radius: 0px;
     padding: 3px 15px;
-    opacity:1;
-}}
+    opacity: 1;
+  }
+}
 
-
-.header-signIn{
-    text-align: center;
-    margin-bottom: 28px;
-    /* border: solid red 1px; */
+.header-signIn {
+  text-align: center;
+  margin-bottom: 28px;
+  /* border: solid red 1px; */
 }
 .navbar-light {
   background-color: #ffffff;
@@ -46,7 +48,7 @@
   box-shadow: 0px 14px 80px rgba(34, 35, 58, 0.2);
   padding: 40px 55px 45px 55px;
   border-radius: 15px;
-  transition: all .3s;
+  transition: all 0.3s;
 }
 
 .auth-wrapper .form-control:focus {
@@ -77,23 +79,22 @@
 .forgot-password a {
   color: #167bff;
 }
-.sign-in-option{
+.sign-in-option {
   margin-top: 5px;
 }
-.home-button-container{
+.home-button-container {
   width: 100%;
-  margin-top: 25px; 
+  margin-top: 25px;
 }
-.home-button{
+.home-button {
   width: 70px;
   margin: 0 auto;
   height: 40px;
   border-radius: 9px;
 }
-.google-et-facebook{ 
-  padding: 2em; }
-
-
+.google-et-facebook {
+  padding: 2em;
+}
 
 .loginBtn {
   box-sizing: border-box;
@@ -107,7 +108,7 @@
   white-space: nowrap;
   border-radius: 0.2em;
   font-size: 16px;
-  color: #FFF;
+  color: #fff;
 }
 .loginBtn:before {
   content: "";
@@ -122,9 +123,9 @@
   outline: none;
 }
 .loginBtn:active {
-  box-shadow: inset 0 0 0 32px rgba(0,0,0,0.1);
+  box-shadow: inset 0 0 0 32px rgba(0, 0, 0, 0.1);
 }
 
-.error-signin{
+.error-signin {
   color: red;
 }

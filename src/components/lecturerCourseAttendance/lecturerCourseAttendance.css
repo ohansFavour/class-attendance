@@ -1,5 +1,5 @@
 .form-container-signUp {
-    width: 350px;
+    width: 90%;
     background-color: white;
     border-top-left-radius: 15px;
     padding: 3px 15px;
@@ -9,9 +9,9 @@
     margin-top: 15px;
   }
   
-  @media screen and (max-width: 768px) {
+  @media screen and (min-width: 500px) {
     .form-container-signUp {
-      width: 100vw;
+      width: 400px;
       background-color: white;
       margin-left: auto;
       border-top-left-radius: 0px;
@@ -20,7 +20,7 @@
     }
   }
   
-  .header-signIn {
+  .header-create-attendance {
     text-align: center;
     margin-bottom: 28px;
     /* border: solid red 1px; */

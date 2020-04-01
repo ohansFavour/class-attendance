@@ -1,0 +1,23 @@
+.create-course-container{
+    width: 100%;
+    
+}
+.form-container-create-course {
+  width: 90%;
+  margin: 0 auto;
+  /* border: .2rem solid #ececec;
+  padding: 10px;
+  border-radius: 8px; */
+}
+.create-submit-button {
+  width: 89px;
+  margin: 10px auto;
+}
+@media only screen and (min-width: 800px){
+    .form-container-create-course {
+        width: 90%;
+        margin: 0 auto;
+        display: inline-block;
+        margin-left: 20px;
+      } 
+}

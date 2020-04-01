@@ -1,45 +1,58 @@
+.lecturer-profile-view {
+  display: flex;
+  justify-content: center;
+}
 .lecturer-profile-container {
-    width: 60vw;
-    margin: 10px auto;
-  }
-  .lecturer-profile-header{
-    font-size: 40px;
-    margin-bottom: 25px;
-  }
-  
-  .lecturer-profile-main-content-container {
-    height: 250px;
-    display: flex;
-    flex-direction: row;
-  }
-  .lecturer-profile-main-content {
-    flex-grow: 1;
-  }
+  width: 90%;
+  padding: 10px;
+}
+.lecturer-profile-picture {
+  display: none;
+}
+.lecturer-profile-header {
+  font-size: 40px;
+  margin-bottom: 25px;
+}
+
+.lecturer-profile-main-content-container {
+  height: 250px;
+  display: flex;
+  flex-direction: row;
+}
+.lecturer-profile-main-content {
+  flex-grow: 1;
+}
+
+.lecturer-profile-main-content-heading {
+  height: 40px;
+}
+.lecturer-page-button-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+.lecturer-page-courses-button {
+  background-color: #167bff;
+  border-radius: 10px;
+}
+.lecturer-page-courses-button-link {
+  text-decoration: none;
+  color: white;
+}
+.lecturer-page-courses-button-link:hover {
+  text-decoration: none;
+  color: white;
+}
+
+@media only screen and (min-width: 700px) {
   .lecturer-profile-picture {
+    display: inline-block;
     width: 120px;
     height: 150px;
     margin: auto 0;
   }
-  
-  .lecturer-profile-main-content-heading{
-      height: 40px;
+  .lecturer-profile-container {
+    width: 650px;
   }
-  .lecturer-page-button-container{
-      width: 100%;
-      display: flex;
-      justify-content: center;
-      margin-top: 30px;
-  }
-  .lecturer-page-courses-button{
-      background-color: #167bff;
-      border-radius: 10px;
-  }
-  .lecturer-page-courses-button-link{
-    text-decoration: none;
-    color: white;
-  }
-  .lecturer-page-courses-button-link:hover{
-  
-    text-decoration: none;
-    color: white;
-  }
+}

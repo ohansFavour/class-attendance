@@ -14,9 +14,7 @@ export const normalizeArray = arr => {
 };
 
 export const denormalizeObject = obj => {
-  console.log(obj)
   const newObj =  !!obj ? Object.values(obj) : null;
-  console.log(newObj);
   return newObj;
 };
 
