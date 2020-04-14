@@ -170,7 +170,7 @@ class AttendanceHistoryComponent extends React.Component {
                                 <th>Name</th>
                                 <th>Department</th>
                                 <th>Level</th>
-                                <th>Matric</th>
+                                <th>Matric Number</th>
                               </tr>
                             </thead>
                             <tbody>
@@ -179,6 +179,7 @@ class AttendanceHistoryComponent extends React.Component {
                                   <tr>
                                     <td>{`${index + 1}`}</td>
                                     <td>{`${student.first_name +
+                                      " " +
                                       student.last_name}`}</td>
                                     <td>{student.department}</td>
                                     <td>{student.level}</td>
