@@ -1,4 +1,4 @@
-.form-container-view{
+.form-container-view {
   display: flex;
   justify-content: center;
 }
@@ -8,19 +8,31 @@
   border-top-left-radius: 15px;
   padding: 3px 15px;
   margin-top: 10vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.form-main {
+  width: 100%;
 }
 .signin-submit-button {
   margin-top: 15px;
 }
+.spinner-container-signin {
+  position: absolute;
+  top: 50vh;
+}
 
 @media only screen and (max-width: 680px) {
   .form-container {
-    width: 100%;
+    /* width: 100%; */
+    max-width: 300px;
     background-color: white;
     margin-top: 10vh;
-    border-top-left-radius: 0px;
-    padding: 3px 15px;
+    border-top-left-radius: 8px;
+    /* padding: 6px 15px; */
     opacity: 1;
+    /* border: solid red 1px; */
   }
 }
 
@@ -28,43 +40,6 @@
   text-align: center;
   margin-bottom: 28px;
   /* border: solid red 1px; */
-}
-.navbar-light {
-  background-color: #ffffff;
-  box-shadow: 0px 14px 80px rgba(34, 35, 58, 0.2);
-}
-
-.auth-wrapper {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  text-align: left;
-}
-
-.auth-inner {
-  width: 450px;
-  margin: auto;
-  background: #ffffff;
-  box-shadow: 0px 14px 80px rgba(34, 35, 58, 0.2);
-  padding: 40px 55px 45px 55px;
-  border-radius: 15px;
-  transition: all 0.3s;
-}
-
-.auth-wrapper .form-control:focus {
-  border-color: #167bff;
-  box-shadow: none;
-}
-
-.auth-wrapper h3 {
-  text-align: center;
-  margin: 0;
-  line-height: 1;
-  padding-bottom: 20px;
-}
-
-.custom-control-label {
-  font-weight: 400;
 }
 
 .forgot-password,
@@ -91,9 +66,6 @@
   margin: 0 auto;
   height: 40px;
   border-radius: 9px;
-}
-.google-et-facebook {
-  padding: 2em;
 }
 
 .loginBtn {

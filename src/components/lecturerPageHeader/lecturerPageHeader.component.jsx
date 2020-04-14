@@ -11,8 +11,7 @@ class LecturerPageHeader extends React.Component {
   handleLogout = async () => {
     //logout
     this.props.history.push("/");
-    this.props.logout();
-    
+    await this.props.logout();
   };
   render() {
     return (

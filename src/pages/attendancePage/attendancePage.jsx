@@ -19,7 +19,7 @@ class AttendancePage extends React.Component {
         <div className="column-one">
           <div
             className={`attendance-page-column1-item  ${
-              display == 1 ? "purple-color" : ""
+              display === 1 ? "purple-color" : ""
             }`}
             onClick={() => {
               this.setState({
@@ -33,7 +33,7 @@ class AttendancePage extends React.Component {
 
           <div
             className={`attendance-page-column1-item  ${
-              display == 2 ? "purple-color" : ""
+              display === 2 ? "purple-color" : ""
             }`}
             onClick={() => {
               this.setState({
@@ -45,7 +45,7 @@ class AttendancePage extends React.Component {
           </div>
         </div>
         <div className="column-two">
-          {this.state.display == 1 ? (
+          {this.state.display === 1 ? (
             <React.Fragment>
               <div className="attendance-page-your-course-header">
                 <h1 className="head-attend">Mark Attendance</h1>
@@ -55,10 +55,10 @@ class AttendancePage extends React.Component {
               </div>
             </React.Fragment>
           ) : null}
-          {this.state.display == 2 ? (
+          {this.state.display === 2 ? (
             <div>
               <div className="head-attend">
-                <h1 className="attendance-page-your-course-header" >
+                <h1 className="attendance-page-your-course-header">
                   Check Attendance Session
                 </h1>
               </div>

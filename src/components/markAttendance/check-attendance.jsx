@@ -22,7 +22,7 @@ class CheckAttendance extends React.Component {
         store.addNotification({
           title: "Success!",
           message: "Attendance is still open",
-          width: 400,
+          width: 300,
           type: "success",
           insert: "top",
           container: "top-left",
@@ -41,7 +41,7 @@ class CheckAttendance extends React.Component {
         store.addNotification({
           title: "Error!",
           message: message,
-          width: 400,
+          width: 300,
           type: "danger",
           insert: "top",
           container: "top-left",

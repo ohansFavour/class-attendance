@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import Axios from "axios";
 import { connect } from "react-redux";
+import Spinner from "react-bootstrap/Spinner";
 import { withRouter, Link } from "react-router-dom";
 
 import { setCurrentUser } from "../../redux/actions";
@@ -53,75 +53,86 @@ class Signin extends Component {
   };
 
   render() {
+    const { isFetching } = this.props;
     return (
-      <div className='form-container-view'>
-        <form className="form-container">
-          <h3 className="header-signIn">Login</h3>
-          <div className="form-group">
-            <label>Email address</label>
-            <input
-              type="email"
-              className="form-control"
-              placeholder="Enter email"
-              name="email"
-              onChange={this.handleChange}
-              value={this.state.email}
-            />
+      <div className="form-container-view">
+        {isFetching ? (
+          <div className="spinner-container-signin">
+            <Spinner animation="border" variant="primary" />
           </div>
-          <div className="form-group">
-            <label>Password</label>
-            <input
-              type="password"
-              className="form-control"
-              placeholder="Enter password"
-              name="password"
-              onChange={this.handleChange}
-              value={this.state.password}
-            />
-          </div>
-          <input
-            type="radio"
-            name="human"
-            value="student"
-            onChange={this.handleRadioChange}
-          />{" "}
-          Student
-          <br />
-          <input
-            type="radio"
-            name="human"
-            value="lecturer"
-            onChange={this.handleRadioChange}
-          />{" "}
-          Lecturer
-          <div className="form-group">
-            <label>
-              {this.state.selectedOption === "student" ? "Matric number" : "ID"}
-            </label>
-            <input
-              type="name"
-              className="form-control"
-              name="publicId"
-              onChange={this.handleChange}
-              value={this.state.publicId}
-            />
-          </div>
-          <button
-            type="submit"
-            onClick={this.handleSubmit}
-            className="btn btn-primary btn-block signin-submit-button"
-          >
-            Submit
-          </button>
-          <p className="forgot-password text-right">
-            New user?
-            <Link to="/signup">
-              <a href="#" id="forgot-password-link">
-                Sign up
-              </a>
-            </Link>
-          </p>
-        </form>
+        ) : (
+          <form className="form-container">
+            <div className="form-main">
+              <h3 className="header-signIn">Login</h3>
+              <div className="form-group">
+                <label>Email address</label>
+                <input
+                  type="email"
+                  className="form-control"
+                  placeholder="Enter email"
+                  name="email"
+                  onChange={this.handleChange}
+                  value={this.state.email}
+                />
+              </div>
+              <div className="form-group">
+                <label>Password</label>
+                <input
+                  type="password"
+                  className="form-control"
+                  placeholder="Enter password"
+                  name="password"
+                  onChange={this.handleChange}
+                  value={this.state.password}
+                />
+              </div>
+              <input
+                type="radio"
+                name="human"
+                value="student"
+                onChange={this.handleRadioChange}
+              />{" "}
+              Student
+              <br />
+              <input
+                type="radio"
+                name="human"
+                value="lecturer"
+                onChange={this.handleRadioChange}
+              />{" "}
+              Lecturer
+              <div className="form-group">
+                <label style={{ marginTop: "12px" }}>
+                  {this.state.selectedOption === "student"
+                    ? "Matric number"
+                    : "ID"}
+                </label>
+                <input
+                  type="name"
+                  className="form-control"
+                  name="publicId"
+                  onChange={this.handleChange}
+                  value={this.state.publicId}
+                />
+              </div>
+              <button
+                type="submit"
+                onClick={this.handleSubmit}
+                className="btn btn-primary btn-block signin-submit-button"
+              >
+                Submit
+              </button>
+              <p className="forgot-password text-right">
+                New user?
+                <Link to="/signup">
+                  <a href="#" id="forgot-password-link">
+                    Sign up
+                  </a>
+                </Link>
+              </p>
+            </div>
+          </form>
+        )}
       </div>
     );
   }

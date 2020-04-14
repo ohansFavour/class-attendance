@@ -2,10 +2,6 @@ import React from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import Button from "react-bootstrap/Button";
-import Popup from "reactjs-popup";
-import Spinner from "react-bootstrap/Spinner";
-
-import Pop from "../popup/popup";
 import {
   selectCourse,
   selectRegisteredCourses,
@@ -18,10 +14,6 @@ import { setCommit } from "../../redux/actions";
 import "./coursePageLecturer.css";
 
 class LecturerCourse extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   handleCreateAttendance = (event, courseId) => {
     event.preventDefault();
 
@@ -35,7 +27,7 @@ class LecturerCourse extends React.Component {
   };
 
   render() {
-    const { course, registeredCourses, attendance, isLoading } = this.props;
+    const { course } = this.props;
     return (
       <React.Fragment>
         <div className="lecturer-course-view-container">
@@ -63,7 +55,7 @@ class LecturerCourse extends React.Component {
           </div>
           <div className="lecturer-course-view-button-container">
             <Button
-            size="sm"
+              size="sm"
               onClick={event =>
                 this.handleCreateAttendance(event, course.public_id)
               }
@@ -73,7 +65,7 @@ class LecturerCourse extends React.Component {
               Create Attendance
             </Button>
             <Button
-            size="sm"
+              size="sm"
               onClick={event =>
                 this.handleAttendanceHistory(event, course.public_id)
               }

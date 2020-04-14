@@ -137,7 +137,7 @@ export const addCourseToUser = (mode, userPublicId, response) => {
         store.addNotification({
           title: "Success",
           message: "Course successfully created",
-          width: 400,
+          width: 300,
           type: "success",
           insert: "top",
           container: "top-left",
@@ -154,7 +154,7 @@ export const addCourseToUser = (mode, userPublicId, response) => {
         store.addNotification({
           title: "Error!",
           message: message,
-          width: 400,
+          width: 300,
           type: "danger",
           insert: "top",
           container: "top-left",
@@ -196,7 +196,7 @@ export const createAndAddCourse = (createObject, mode, userPublicId) => {
         store.addNotification({
           title: "Error!",
           message: message,
-          width: 400,
+          width: 300,
           type: "danger",
           insert: "top",
           container: "top-left",
@@ -277,7 +277,7 @@ export const setCommit = (attendanceId, courseId) => {
         store.addNotification({
           title: "Error!",
           message: message,
-          width: 400,
+          width: 300,
           type: "danger",
           insert: "top",
           container: "top-left",
@@ -308,7 +308,7 @@ export const setAttendanceProfile = attendanceId => {
         store.addNotification({
           title: "Error!",
           message: message,
-          width: 400,
+          width: 300,
           type: "danger",
           insert: "top",
           container: "top-left",

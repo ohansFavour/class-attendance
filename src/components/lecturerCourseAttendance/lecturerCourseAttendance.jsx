@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { store } from "react-notifications-component";
 
-import {addCourseAttendance } from "../../redux/actions";
+import { addCourseAttendance } from "../../redux/actions";
 
 import "./lecturerCourseAttendance.css";
 
@@ -45,7 +45,7 @@ class LectureCourseAttendance extends Component {
         store.addNotification({
           title: "Success!",
           message: "Attendance successfully created",
-          width: 400,
+          width: 300,
           type: "success",
           insert: "top",
           container: "top-left",
@@ -67,7 +67,7 @@ class LectureCourseAttendance extends Component {
         store.addNotification({
           title: "Error!",
           message: message,
-          width: 400,
+          width: 300,
           type: "danger",
           insert: "top",
           container: "top-left",

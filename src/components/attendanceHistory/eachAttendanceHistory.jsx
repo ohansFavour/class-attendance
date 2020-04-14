@@ -37,7 +37,7 @@ class AttendanceHistoryComponent extends React.Component {
         store.addNotification({
           title: "Success!",
           message: " Attendance session closed",
-          width: 400,
+          width: 300,
           type: "success",
           insert: "top",
           container: "top-left",
@@ -54,7 +54,7 @@ class AttendanceHistoryComponent extends React.Component {
         store.addNotification({
           title: "Error!",
           message: "An error occured",
-          width: 400,
+          width: 300,
           type: "danger",
           insert: "top",
           container: "top-left",
@@ -129,6 +129,7 @@ class AttendanceHistoryComponent extends React.Component {
                 icon={faPlus}
                 onClick={props => this.handleOpen(props, profile.public_id)}
                 color="rgb(75,139,245)"
+                style={{ cursor: "pointer" }}
               />{" "}
               View commits
             </div>
@@ -137,6 +138,7 @@ class AttendanceHistoryComponent extends React.Component {
               icon={faMinus}
               onClick={this.handleClose}
               color="rgb(75,139,245)"
+              style={{ cursor: "pointer" }}
             />
           )}
           {!open ? null : (
@@ -161,7 +163,7 @@ class AttendanceHistoryComponent extends React.Component {
                           <h6 align="center" style={{ marginTop: "20px" }}>
                             Commited Students
                           </h6>
-                          <Table striped bordered hover>
+                          <Table striped bordered hover size="sm">
                             <thead>
                               <tr>
                                 <th>S/N</th>

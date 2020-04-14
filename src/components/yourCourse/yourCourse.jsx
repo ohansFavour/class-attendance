@@ -46,7 +46,7 @@ class YourCourse extends React.Component {
         store.addNotification({
           title: "Error!",
           message: message,
-          width: 400,
+          width: 300,
           type: "danger",
           insert: "top",
           container: "top-left",
@@ -85,7 +85,7 @@ class YourCourse extends React.Component {
         store.addNotification({
           title: "Error!",
           message: message,
-          width: 400,
+          width: 300,
           type: "danger",
           insert: "top",
           container: "top-left",
@@ -115,7 +115,7 @@ class YourCourse extends React.Component {
             {!!!error &&
             Array.isArray(this.props.registeredCourses) &&
             this.props.registeredCourses.length !== 0 ? (
-              <Table striped bordered hover>
+              <Table striped bordered hover size="sm">
                 <thead>
                   <tr>
                     <th>Course Title</th>

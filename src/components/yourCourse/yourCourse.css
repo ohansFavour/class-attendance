@@ -4,8 +4,10 @@
 .delete {
   color: crimson;
 }
-.your-courses-container{
+.your-courses-container {
   /* border: solid red 1px; */
   width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
   margin-top: 20px;
 }

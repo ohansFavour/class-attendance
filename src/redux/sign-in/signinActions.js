@@ -65,7 +65,7 @@ export const fetchUserAsync = (data, history) => {
         store.addNotification({
           title: "Failure",
           message: msg,
-          width: 400,
+          width: 300,
           type: "danger",
           insert: "top",
           container: "top-left",
@@ -89,7 +89,7 @@ export const fetchUserAsync = (data, history) => {
       store.addNotification({
         title: "Failure",
         message: message,
-        width: 500,
+        width: 300,
         type: "danger",
         insert: "top",
         container: "top-left",

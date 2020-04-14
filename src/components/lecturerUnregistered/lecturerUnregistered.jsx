@@ -50,7 +50,7 @@ class LecturerUnregistered extends React.Component {
         store.addNotification({
           title: "Error!",
           message: message,
-          width: 400,
+          width: 300,
           type: "danger",
           insert: "top",
           container: "top-left",
@@ -81,7 +81,7 @@ class LecturerUnregistered extends React.Component {
             {!!!error &&
             Array.isArray(this.props.unregisteredCourses) &&
             this.props.unregisteredCourses.length ? (
-              <Table striped bordered hover>
+              <Table striped bordered hover size="sm">
                 <thead>
                   <tr>
                     <th>Course Title</th>
@@ -108,7 +108,7 @@ class LecturerUnregistered extends React.Component {
                       </td> */}
                         <td className="table-content">
                           <Button
-                          size="sm"
+                            size="sm"
                             variant="outline-primary"
                             onClick={() =>
                               this.handleRegister(course.public_id)

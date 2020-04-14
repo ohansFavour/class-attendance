@@ -41,7 +41,7 @@ class RegisteredCourses extends React.Component {
     return (
       <div className="registered-courses-container">
         {Array.isArray(registeredCourses) && registeredCourses.length ? (
-          <Table striped bordered hover>
+          <Table striped bordered hover size="sm">
             <thead>
               <tr>
                 <th>Course Title</th>

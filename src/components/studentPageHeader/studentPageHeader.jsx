@@ -19,7 +19,7 @@ class StudentPageHeader extends React.Component {
     return (
       <div className="student-page-header-container">
         <div className="student-page-header-logo-container">
-          <img src={Logo} className="student-page-header-logo" />
+          <img src={Logo} className="student-page-header-logo" alt="logo" />
         </div>
         <div className="student-page-header-options">
           <Link

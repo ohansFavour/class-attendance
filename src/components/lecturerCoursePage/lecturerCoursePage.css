@@ -13,14 +13,13 @@
   justify-content: center;
   background-color: rgba(66, 133, 244, 1);
   color: white;
-  margin-bottom:20px;
+  margin-bottom: 50px;
   width: 250px;
   border-top-left-radius: 14px;
-  /* border: solid red 1px; */
 }
 .column-two-lecturerCourse {
   width: 100%;
-  padding:10px;
+  padding: 10px;
 }
 
 .lecturer-course-page-column1-item {
@@ -45,13 +44,13 @@
     display: flex;
     flex-direction: row;
     align-items: flex-start;
-    padding: 20px;
+    padding: 30px;
   }
 
   .column-two-lecturerCourse {
     width: 100%;
     margin-left: 30px;
-    padding:0
+    padding: 0;
   }
 }
 

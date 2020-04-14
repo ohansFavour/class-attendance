@@ -45,7 +45,7 @@ export const createNewStudentAsync = data => {
       store.addNotification({
         title: "Success!",
         message: response.data.message,
-        width: 400,
+        width: 300,
         type: "success",
         insert: "top",
         container: "top-left",
@@ -61,7 +61,7 @@ export const createNewStudentAsync = data => {
       store.addNotification({
         title: "Error!",
         message: error.response.data.message,
-        width: 400,
+        width: 300,
         type: "danger",
         insert: "top",
         container: "top-left",
@@ -77,7 +77,7 @@ export const createNewStudentAsync = data => {
       store.addNotification({
         title: "Error!",
         message: `error connecting to server, please check your network connection`,
-        width: 400,
+        width: 300,
         type: "danger",
         insert: "top",
         container: "top-left",

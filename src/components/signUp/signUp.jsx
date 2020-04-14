@@ -173,7 +173,7 @@ class SignUp extends Component {
                   <input
                     type="name"
                     className="form-control"
-                    placeholder="Enter Department"
+                    placeholder=""
                     name="department"
                     onChange={this.handleChange}
                     value={this.state.department}
@@ -212,21 +212,26 @@ class SignUp extends Component {
                     value={this.state.password}
                   />
                 </div>
-                <input
-                  type="radio"
-                  name="human"
-                  value="student"
-                  onChange={this.handleRadioChange}
-                />{" "}
-                Student
-                <br />
-                <input
-                  type="radio"
-                  name="human"
-                  value="lecturer"
-                  onChange={this.handleRadioChange}
-                />{" "}
-                Lecturer <br />
+                <div className="form-group">
+                  <input
+                    type="radio"
+                    name="human"
+                    value="student"
+                    onChange={this.handleRadioChange}
+                  />{" "}
+                  Student
+                </div>
+                <div className="form-group">
+                  {" "}
+                  <input
+                    type="radio"
+                    name="human"
+                    value="lecturer"
+                    onChange={this.handleRadioChange}
+                  />{" "}
+                  Lecturer{" "}
+                </div>
+
                 <div className="form-group">
                   {this.state.selectedOption === "student" ? (
                     <React.Fragment>
@@ -241,7 +246,7 @@ class SignUp extends Component {
                     </React.Fragment>
                   ) : null}
 
-                  <label>
+                  <label style={{ marginTop: "10px" }}>
                     {this.state.selectedOption === "student"
                       ? "Matric number"
                       : "ID"}
@@ -262,13 +267,16 @@ class SignUp extends Component {
                   Submit
                 </button>
                 <div className=" home-button-sign-up-container">
-                  <Button
-                    className=" home-button-sign-up"
-                    onClick={this.handleHome}
-                    variant="outline-success"
-                  >
-                    home
-                  </Button>
+                  <span className=" home-button-sign-up">
+                    Already have an account?{" "}
+                    <span
+                      href="#"
+                      onClick={this.handleHome}
+                      className="login-signup"
+                    >
+                      Login
+                    </span>
+                  </span>
                 </div>
               </form>
               <div className="sign-up-page-fixed"> </div>

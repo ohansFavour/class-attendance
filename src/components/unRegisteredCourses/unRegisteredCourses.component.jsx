@@ -17,10 +17,6 @@ import { denormalizeObject } from "../../functions";
 import "./unRegisteredCourses.component.css";
 
 class UnRegisteredCourses extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   componentDidMount() {
     const { mode, currentUser, getUnregisteredCourses } = this.props;
     getUnregisteredCourses(mode, currentUser, false);
@@ -43,7 +39,7 @@ class UnRegisteredCourses extends React.Component {
     return (
       <div className="registered-courses-container">
         {Array.isArray(unregisteredCourses) && unregisteredCourses.length ? (
-          <Table>
+          <Table striped bordered hover size="sm">
             <thead>
               <tr>
                 <th>Course Title</th>

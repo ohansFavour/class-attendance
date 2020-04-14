@@ -9,7 +9,6 @@ import { clearAttendance } from "../../redux/actions";
 import { store } from "react-notifications-component";
 
 class Pop extends React.Component {
-  
   handleCloseSession = async (courseId, attendanceId) => {
     await Axios.put(`/attendance/close/${attendanceId}`)
       .then(response => {
@@ -20,7 +19,7 @@ class Pop extends React.Component {
         store.addNotification({
           title: "Error!",
           message: message,
-          width: 400,
+          width: 300,
           type: "danger",
           insert: "top",
           container: "top-left",
@@ -49,12 +48,15 @@ class Pop extends React.Component {
           >
             Close session
           </Button>
-          <span><strong>Course Code: </strong>{courseCode}</span>
+          <span>
+            <strong>Course Code: </strong>
+            {courseCode}
+          </span>
         </div>
         <div className="commited-students">
           <h3>Commited Students</h3>
         </div>
-        <Table striped bordered hover>
+        <Table striped bordered hover size="sm">
           <thead>
             <tr>
               <th>Name</th>
