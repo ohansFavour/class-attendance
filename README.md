@@ -1,3 +1,11 @@
+<h1>class-attendance</h1>
+
+<p> A web based class attendance monitoring system</p>
+
+
+![classat](https://user-images.githubusercontent.com/46670083/80398946-55016d80-88b0-11ea-811a-beb9a2d5b4fb.PNG)
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
